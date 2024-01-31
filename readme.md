@@ -1,34 +1,47 @@
-# Atomic Design To-Do List App
+# Atomic Design To-Do List App Challenge
 
-### Objective:
+##### Read the [project requirements, here](requirements.md).
+To-Do List App using Atomic Design, Typescript and React. 
 
-Create an interactive to-do list application using the principles of **Atomic Design**. Utilize `TypeScript` for enhanced type safety and structured code.
+### Atomic Design elements
+- **Theme Tokens**: Base for creation of components
+  - Colors, Mode
+- **Atoms**: The smaller and reusable piece of design, usually base html elements.
+  - `Typography`, `Input`, `Button`, `Checkbox`, `Icon`
+- **Molecules**: A reusable code that combines some Atoms to create ui components.
+  - `IconButton`, `NewTaskForm`, `Task`, `Tab`, `Card`
+- **Organism**: A combination of Molecules and Atoms to create a piece of UI that might be interactable
+  - `Header`, `TaskList`, `EmptyList`, `FilterTabs` 
+- **Templates**: A combination of Organisms, Molecules and Atoms to create a page layout
+  - `FullWindowLayout`, `BaseAppLayout`
+- **Pages**: A Templates in action, giving pages live.
+  - `Welcome`, `Home`
 
-### Technical requirements
+### Entities
 
- - Implement the Atomic Design methodology in structuring your project. Divide the application into atoms, molecules, organisms, templates, and pages.
- - Create a TypeScript interface for the task object, defining properties such as `id`, `name`, and `completed`.
- - Design and style the application using CSS, focusing on Atomic Design principles. Consider the styling for atoms (e.g., buttons, input fields), molecules (e.g., task item), and organisms (e.g., task list).
- - Apply TypeScript for handling the logic of adding, marking as completed, and removing tasks.
- - Ensure that TypeScript types are used consistently throughout the application.
+```ts
+type Task = {
+  id: string
+  name: string
+  completed: boolean
+  createdAt: Date
+}
 
-### Product requirements
- - Include an input field to add new tasks.
- - Display a list of tasks with checkboxes to mark them as completed.
- - Implement functionality to remove completed tasks.
+type SessionUser = {
+  name: string
+}
+```
 
-### Implementation:
+### Features
+- **Create Task**: Add a new task
+- **Complete Task**: Mark a task as completed
+- **Filter**: All, Active, Completed
+- **Clear Completed**: Remove all completed tasks
+- **Session User**: Display the user name
+- **Theme**: Light and Dark mode
+- **Local Persistense**: Save tasks in local storage
+- **Responsive**: Mobile and Desktop
 
-- Use Atomic Design principles to organize your project structure.
-- Utilize TypeScript for type safety and maintainability.
-- Implement CSS for styling based on the principles of Atomic Design.
-- Make the application responsive and visually appealing
-- Include a README file explaining the Atomic Design choices made during development and any other relevant considerations.
-
-## Bonus:
-
-- Implement local storage functionality to persist tasks even after the page is refreshed.
-- Add animations or transitions to enhance the user experience.
-- Allow users to edit task names.
-- Include lint or style configurations of your choice, such as eslint, stylelint, prettier, or other.
-- Include unit tests using a testing framework of your choice, such as jest.
+### Decision log
+- [Vite](https://vitejs.dev/): Fast and easy to use. No SEO requirements for "private task list".
+- Manual styling: No need for a CSS/UI framework, to keep the project simple and small.
