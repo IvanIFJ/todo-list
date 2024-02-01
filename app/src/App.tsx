@@ -5,6 +5,7 @@ import { ThemeProvider } from './styles/Theme'
 export function App() {
   return (
     <ThemeProvider>
+      <Input placeholder='Enter new task' autoFocus/>
       <Typography as="h1" $variant='heading'>Hello, todo-list!</Typography>
       <Typography $variant='subheading'>Hello, todo-list!</Typography>
       <Typography $variant='body'>Hello, todo-list!</Typography>

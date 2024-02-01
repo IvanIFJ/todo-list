@@ -23,4 +23,9 @@ export const NormalizeStyles = createGlobalStyle`
   a {
     background-color: transparent;
   }
+  input, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
 `

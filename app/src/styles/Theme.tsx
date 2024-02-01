@@ -46,6 +46,7 @@ export type Theme = {
       caption2:string
     }
   }
+  spacing: (scale: number) => string
 }
 
 const theme: Theme = {
@@ -98,7 +99,8 @@ const theme: Theme = {
       caption: '14px',
       caption2: '12px',
     }
-  }
+  },
+  spacing: (scale) => `${scale * 8}px`,
 }
 
 export function ThemeProvider({ children }: WithChildren) {
