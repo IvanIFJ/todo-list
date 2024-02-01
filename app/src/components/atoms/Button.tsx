@@ -6,12 +6,16 @@ type ButtonProps = {
 }
 
 export const Button = styled.button<ButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   border: none;
   cursor: pointer;
   outline: none;
   transition: background-color 0.2s;
   ${({ theme, $disabled }) => `
+    gap: ${theme.spacing(1)};
     font-size: ${theme.font.size.body};
     font-weight: ${theme.font.weight.regular};
     height: ${theme.spacing(5)};
