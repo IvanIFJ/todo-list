@@ -26,6 +26,9 @@ export const NormalizeStyles = createGlobalStyle`
   a {
     background-color: transparent;
   }
+  * {
+    box-sizing: border-box;
+  }
   input, textarea, button {
     font-family: inherit;
     font-size: inherit;

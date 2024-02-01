@@ -9,7 +9,6 @@ export const Button = styled.button<ButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
   border: none;
   cursor: pointer;
   outline: none;

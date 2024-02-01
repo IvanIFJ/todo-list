@@ -6,6 +6,7 @@ import { Task } from '../../entities'
 
 const Container = styled.div`
   min-height: 350px;
+  overflow-y: auto;
   ${({ theme }) => `
     margin: ${theme.spacing(1)} 0;
   `}

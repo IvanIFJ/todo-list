@@ -6,8 +6,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-  padding: ${({ theme }) => theme.spacing(4)};
   background-color: ${({ theme }) => theme.color.surface.accent};
   width: 100%;
   height: 100vh;
@@ -15,20 +13,29 @@ const Wrapper = styled.div`
 `
 
 const Container = styled.div`
-  max-width: 375px;
+  max-width: 475px;
+  width: 100%;
+  height: 100%;
+  max-height: 650px;
   background-color: ${({ theme }) => theme.color.surface.subtle};
   border-radius: ${({ theme }) => theme.spacing(6)};
   padding: ${({ theme }) => `${theme.spacing(6)} ${theme.spacing(3)}`};
   position: relative;
 `
 
+const Main = styled.main`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: ${({ theme }) => theme.spacing(6)};
+`
 
 export function BaseLayout({ children }: WithChildren) {
   return (
     <Wrapper>
       <Container>
         <Header />
-        <main>{children}</main>
+        <Main>{children}</Main>
       </Container>
     </Wrapper>
   )

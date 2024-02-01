@@ -9,6 +9,7 @@ export const Input = styled.input`
   `};
   border: none;
   outline: none;
+  width: 100%;
   ::placeholder {
     color: ${({ theme }) => theme.color.text.subtle};
   }

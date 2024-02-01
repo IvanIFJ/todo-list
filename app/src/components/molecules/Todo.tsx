@@ -12,7 +12,6 @@ type TodoProps = {
 const Container = styled.div<{ $checked?: boolean }>`
   display: flex;
   align-items: center;
-  box-sizing: border-box;
   transition: all 0.2s ease;
   ${({ theme }) => `
     box-shadow: 0px 2px 4px ${theme.color.boder};

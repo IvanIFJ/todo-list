@@ -3,6 +3,13 @@ import { Button } from '../atoms/Button'
 import { Input } from '../atoms/Input'
 import { useEffect, useRef, useState } from 'react'
 import { useTaskList } from '../../state'
+import styled from 'styled-components'
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(3)};
+`
 
 type CreateTodoProps = {
   onCreate?: (name: string) => void
@@ -27,16 +34,18 @@ export function CreateTodo({ onCreate }:CreateTodoProps) {
   }
 
   return (
-    <form onSubmit={handeSubmit}>
+    <Form onSubmit={handeSubmit}>
       <Input
         type='text'
         ref={ref}
-        placeholder="Type your task hereaa"
+        placeholder="Type your task here"
         value={name}
         onChange={handleChange}
         required
       />
-      <Button type="submit">Create task <PlusCircle size={20} /> </Button>
-    </form>
+      <div>
+        <Button type="submit" $disabled={!name}>Create task <PlusCircle size={20} /> </Button>
+      </div>
+    </Form>
   )
 }
