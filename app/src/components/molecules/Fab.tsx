@@ -3,8 +3,11 @@ import styled from 'styled-components'
 import { Button } from '../atoms/Button'
 
 const Container = styled(Button)`
-  padding: 0 0 0 0;
-  position: fixed;
+  padding: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   ${({ theme }) => `
     bottom: ${theme.spacing(4)};
     right: ${theme.spacing(4)};
@@ -13,17 +16,15 @@ const Container = styled(Button)`
     border-radius: ${theme.boderRadius.large};
     box-shadow: 0px 8px 10px #1167e269;
   `}
-  // small adjustment to align the icon on the center
-  svg { margin-top: 2px; }
 `
 
 type FabProps = {
   icon: LucideIcon
-}
+} & React.HTMLAttributes<HTMLButtonElement>
 
-export function Fab({ icon: Icon }: FabProps) {
+export function Fab({ icon: Icon, ...props }: FabProps) {
   return (
-    <Container>
+    <Container {...props}>
       {<Icon />}
     </Container>
   )
