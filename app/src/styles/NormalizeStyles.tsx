@@ -23,7 +23,7 @@ export const NormalizeStyles = createGlobalStyle`
   a {
     background-color: transparent;
   }
-  input, textarea {
+  input, textarea, button {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
