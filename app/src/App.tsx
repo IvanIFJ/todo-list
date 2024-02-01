@@ -1,7 +1,9 @@
+import { ThemeProvider } from './styles/Theme'
+
 export function App() {
   return (
-    <div>
+    <ThemeProvider>
       <h1>Hello, todo-list!</h1>
-    </div>
+    </ThemeProvider>
   )
 }
