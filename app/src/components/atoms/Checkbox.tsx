@@ -18,11 +18,6 @@ export const Checkbox = styled(Check)<CheckboxProps>`
       color: ${theme.color.iteraction.hover};
       border-color: ${theme.color.iteraction.hover};
     }
-    &:active {
-      color: ${theme.color.text.inverse};
-      border-color: ${theme.color.iteraction.active};
-      background-color: ${theme.color.iteraction.active};
-    }
     ${$checked ? `
       color: ${theme.color.iteraction.base};
       border-color: ${theme.color.boder};
