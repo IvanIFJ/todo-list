@@ -1,7 +1,7 @@
+import { Settings } from 'lucide-react'
 import styled from 'styled-components'
 import { Typography } from '../atoms/Typography'
-import { Settings } from 'lucide-react'
-import { Icon } from '../atoms/Icon'
+import { IconButton } from './IconButton'
 
 const StyledHeader = styled.header`
   display: flex;
@@ -13,7 +13,7 @@ export function Header() {
   return (
     <StyledHeader>
       <Typography as="h1" $variant='subheading' $color='subtle'>Atomic To-Do List</Typography>
-      <Icon icon={Settings} color='subtle' />
+      <IconButton icon={Settings} />
     </StyledHeader>
   )
 }
