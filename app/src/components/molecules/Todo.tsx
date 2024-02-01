@@ -28,25 +28,21 @@ const Container = styled.div`
 `
 
 const Name = styled(Typography)<{ $checked?: boolean }>`
-  ${({ $checked, theme }) => $checked ? `
+  ${({ $checked }) => $checked ? `
     text-decoration: line-through;
-    color: ${theme.color.text.subtle};
-  ` : ''}
-`
-const CreatedAt = styled(Typography)<{ $checked?: boolean }>`
-  ${({ $checked, theme }) => $checked ? `
-    color: ${theme.color.text.subtle};
   ` : ''}
 `
 
-export function Todo({value: { completed, createdAt,
-   name }, onClick }: TodoProps) {
+export function Todo({value, onClick }: TodoProps) {
+  const { completed, createdAt, name } = value
+  const color = completed ? 'subtle' : 'base'
+
   return (
     <Container>
       <Checkbox onClick={onClick} $checked={completed}/>
       <div>
-        <Name $checked={completed} as="span" $variant='body'>{name}</Name>
-        <CreatedAt $checked={completed} $variant='caption2'>{formatDate(createdAt)}</CreatedAt>
+        <Name $color={color} $checked={completed} as="span" $variant='body'>{name}</Name>
+        <Typography $color={color} $variant='caption2'>{formatDate(createdAt)}</Typography>
       </div>
     </Container>
   )
