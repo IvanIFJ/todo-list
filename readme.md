@@ -41,6 +41,7 @@ type SessionUser = {
 - **Theme**: Light and Dark mode
 - **Local Persistense**: Save tasks in local storage
 - **Responsive**: Mobile and Desktop
+- **Deployment**: GithubPages at [https://ivanifj.github.io/todo-list/](https://ivanifj.github.io/todo-list/)
 
 ### Decision log
 - [Vite](https://vitejs.dev/): Fast and easy to use. No SEO requirements for "private task list".
