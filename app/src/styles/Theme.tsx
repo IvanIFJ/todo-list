@@ -38,6 +38,13 @@ export type Theme = {
       regular: number
       bold: number
     }
+    size: {
+      heading: string
+      subheading: string
+      body: string
+      caption: string
+      caption2:string
+    }
   }
 }
 
@@ -83,6 +90,13 @@ const theme: Theme = {
       light: 300,
       regular: 400,
       bold: 600
+    },
+    size: {
+      heading: '24px',
+      subheading: '20px',
+      body: '16px',
+      caption: '14px',
+      caption2: '12px',
     }
   }
 }
