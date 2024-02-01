@@ -44,5 +44,8 @@ type SessionUser = {
 - **Deployment**: GithubPages at [https://ivanifj.github.io/todo-list/](https://ivanifj.github.io/todo-list/)
 
 ### Decision log
-- [Vite](https://vitejs.dev/): Fast and easy to use. No SEO requirements for "private task list".
-- Manual styling: No need for a CSS/UI framework, to keep the project simple and small.
+- [Vite](https://vitejs.dev/): Fast and easy to use. No SEO requirements since it is a "private task list app"
+- Manual styling: Few components, no need for a UI framework like Material, Tailwind, Ant or similar
+- CSS-in-JS ( [styled-components](https://styled-components.com/) ) to style components and manage theme tokens
+- [Lucid Icons](https://lucide.dev/) for the svg icons ( tree-shakable )
+- [Zustand](https://github.com/pmndrs/zustand) for state management.
