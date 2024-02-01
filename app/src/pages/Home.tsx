@@ -9,8 +9,9 @@ const user = {
 export function Home() {
   return (
     <BaseLayout>
-      <Typography as="h1" $variant='heading'>What's up, {user.name}!</Typography>
-      <Typography $variant='caption2'>All tasks</Typography>
+      <Typography as="h2" $variant='heading'>What's up, {user.name}!</Typography>
+      <br />
+      <Typography $variant='caption2' $color='subtle'>All tasks</Typography>
       <TaskList />
     </BaseLayout>
   )

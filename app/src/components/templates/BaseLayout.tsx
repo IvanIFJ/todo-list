@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   max-width: 375px;
-  background-color: ${({ theme }) => theme.color.surface.base};
+  background-color: ${({ theme }) => theme.color.surface.subtle};
   border-radius: ${({ theme }) => theme.spacing(6)};
   padding: ${({ theme }) => `${theme.spacing(6)} ${theme.spacing(3)}`};
 `

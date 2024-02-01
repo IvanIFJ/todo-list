@@ -7,7 +7,7 @@ type IteractiveColorRange = {
   hover: string
 }
 
-export type Theme = {
+export type BaseTheme = {
   mode: 'light' | 'dark'
   color: {
     iteraction: IteractiveColorRange
@@ -49,7 +49,8 @@ export type Theme = {
   spacing: (scale: number) => string
 }
 
-const theme: Theme = {
+
+const theme = {
   mode: 'light',
   color: {
     iteraction: {
@@ -100,8 +101,10 @@ const theme: Theme = {
       caption2: '12px',
     }
   },
-  spacing: (scale) => `${scale * 8}px`,
-}
+  spacing: (scale: number) => `${scale * 8}px`,
+} as const
+
+export type Theme = typeof theme
 
 export function ThemeProvider({ children }: WithChildren) {
   return (

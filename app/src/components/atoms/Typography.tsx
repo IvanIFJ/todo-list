@@ -18,7 +18,7 @@ export const Typography = styled.p<TypographyProps>`
       subheading: theme.font.weight.bold,
       body: theme.font.weight.regular,
       caption: theme.font.weight.regular,
-      caption2: theme.font.weight.light,
+      caption2: theme.font.weight.bold,
     }[$variant]};
     text-transform: ${['caption2'].includes($variant) ? 'uppercase' : 'none'};
   `}

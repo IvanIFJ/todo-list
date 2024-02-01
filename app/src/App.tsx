@@ -1,4 +1,3 @@
-import styled from 'styled-components'
 import { Home } from './pages/Home'
 import { ThemeProvider } from './styles/Theme'
 
