@@ -3,4 +3,5 @@ export type Task = {
   name: string
   completed: boolean
   createdAt: Date
+  completedAt?: Date
 }

@@ -1,24 +1,47 @@
+import { useMemo } from 'react'
 import styled from 'styled-components'
-import { Task } from '../../entities'
+import { useTaskList } from '../../state'
 import { Todo } from '../molecules/Todo'
+import { Task } from '../../entities'
 
 const Container = styled.div`
+  min-height: 350px;
   ${({ theme }) => `
     margin: ${theme.spacing(1)} 0;
   `}
 `
 
-const fakeData: Task[] = [
-  { id: 'a1', name: 'Create a Checkbox component', completed: false, createdAt: new Date() },
-  { id: 'c3', name: 'Task 3', completed: false, createdAt: new Date() },
-  { id: 'd4', name: 'Each icon can be imported as a React component, which renders an inline SVG element.', completed: true, createdAt: new Date() },
-  { id: 'b2', name: 'Deploy application', completed: true, createdAt: new Date() },
-]
-
 export function TaskList() {
+  const { list, toggleTodo } = useTaskList(({ list, toggleTodo }) => ({ list, toggleTodo }))
+  const tasks = Object.values(list).reduce((result, task) => {
+    if (task.completed) {
+      return { ...result, completed: [...result.completed, task]}
+    } 
+    return { ...result, pending: [...result.pending, task]}
+  }, {
+    completed: [],
+    pending: [],
+  } as Record<'completed' | 'pending', Task[]>)
+
+  const sortedPending = useMemo(() => tasks.pending.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()), [tasks.pending])
+  const sortedCompleted = useMemo(() => tasks.completed.sort((a, b) => b.completedAt?.getTime()||0 - (a.completedAt?.getTime()||0)), [tasks.completed])
+
   return (
     <Container>
-      {fakeData.map((task) => (<Todo key={task.id} value={task}/>))}
+      {sortedPending.map((task) => (
+        <Todo
+          key={task.id}
+          onClick={() => toggleTodo(task.id)}
+          value={task}
+        />
+      ))}
+      {sortedCompleted.map((task) => (
+        <Todo
+          key={task.id}
+          onClick={() => toggleTodo(task.id)}
+          value={task}
+        />
+      ))}
     </Container>
   )
 }
