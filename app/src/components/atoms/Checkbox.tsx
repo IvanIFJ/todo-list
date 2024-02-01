@@ -7,11 +7,11 @@ type CheckboxProps = {
 
 export const Checkbox = styled(Check)<CheckboxProps>`
   ${({ theme, $checked }) => `
-    width: ${theme.spacing(2)};
-    height: ${theme.spacing(2)};
+    width: ${theme.spacing(3)};
+    height: ${theme.spacing(3)};
     border: 2px solid ${theme.color.iteraction.base};
     border-radius: ${theme.boderRadius.large};
-    padding: ${theme.spacing(0.5)};
+    padding: ${theme.spacing(0.25)};
     transition: all ease 0.2s;
     cursor: pointer;
     &:hover {
