@@ -1,7 +1,9 @@
+import { PlusCircle } from 'lucide-react'
 import { Button } from './components/atoms/Button'
 import { Checkbox } from './components/atoms/Checkbox'
 import { Input } from './components/atoms/Input'
 import { Typography } from './components/atoms/Typography'
+import { Fab } from './components/molecules/Fab'
 import { Todo } from './components/molecules/Todo'
 import type { Task } from './entities'
 import { ThemeProvider } from './styles/Theme'
@@ -18,6 +20,7 @@ export function App() {
   return (
     <ThemeProvider>
       {fakeTaskList.map((task, index) => (<Todo key={index} value={task}/>))}
+      <Fab icon={PlusCircle} />
       <Checkbox />
       <Checkbox $checked/>
       <Input placeholder='Enter new task' autoFocus/>
