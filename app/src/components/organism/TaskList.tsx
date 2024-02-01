@@ -25,7 +25,9 @@ export function TaskList() {
   } as Record<'completed' | 'pending', Task[]>)
 
   const sortedPending = useMemo(() => tasks.pending.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()), [tasks.pending])
-  const sortedCompleted = useMemo(() => tasks.completed.sort((a, b) => b.completedAt?.getTime()||0 - (a.completedAt?.getTime()||0)), [tasks.completed])
+  const sortedCompleted = useMemo(() => tasks.completed.sort((a, b) =>
+    (b.completedAt?.getTime()||0) - (a.completedAt?.getTime()||0)), [tasks.completed]
+  )
 
   return (
     <Container>
