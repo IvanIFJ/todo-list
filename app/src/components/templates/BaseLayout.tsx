@@ -19,6 +19,7 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.color.surface.subtle};
   border-radius: ${({ theme }) => theme.spacing(6)};
   padding: ${({ theme }) => `${theme.spacing(6)} ${theme.spacing(3)}`};
+  position: relative;
 `
 
 
