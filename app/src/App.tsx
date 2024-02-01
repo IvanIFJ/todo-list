@@ -1,4 +1,5 @@
 import { Button } from './components/atoms/Button'
+import { Checkbox } from './components/atoms/Checkbox'
 import { Input } from './components/atoms/Input'
 import { Typography } from './components/atoms/Typography'
 import { ThemeProvider } from './styles/Theme'
@@ -6,6 +7,8 @@ import { ThemeProvider } from './styles/Theme'
 export function App() {
   return (
     <ThemeProvider>
+      <Checkbox />
+      <Checkbox $checked/>
       <Input placeholder='Enter new task' autoFocus/>
       <Button>Add new task</Button>
       <Button $disabled>Add new task</Button>
