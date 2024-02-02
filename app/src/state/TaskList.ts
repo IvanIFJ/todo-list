@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import { Task } from './entities'
-import { generateId } from './utils/generateId'
+import { Task } from '../entities'
+import { generateId } from '../utils/generateId'
 
 type State = {
   list: Record<string, Task>
@@ -16,7 +16,7 @@ type Actions = {
   clearTodos: () => void
 }
 
-const initialState: State = {
+const INITIAL_STATE: State = {
   list: {},
   meta: {
     total: 0,
@@ -24,8 +24,10 @@ const initialState: State = {
   }
 }
 
-export const useTaskList = create<State & Actions>((set) => ({
-  ...initialState,
+type TaskListStore = State & Actions
+
+export const useTaskList = create<TaskListStore>((set) => ({
+  ...INITIAL_STATE,
   createTodo: (name) => {
     set((state) => {
       const createdAt = new Date()
@@ -58,6 +60,6 @@ export const useTaskList = create<State & Actions>((set) => ({
     })
   },
   clearTodos: () => {
-    set(() => initialState)
+    set(() => INITIAL_STATE)
   }
 }))
