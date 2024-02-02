@@ -13,7 +13,8 @@ export function Header() {
   return (
     <StyledHeader>
       <Typography as="h1" $variant='subheading' $color='subtle'>Atomic To-Do List</Typography>
-      <IconButton icon={Settings} />
+      {/* Temp remove settings until implementation */}
+      {false && <IconButton icon={Settings} />}
     </StyledHeader>
   )
 }
