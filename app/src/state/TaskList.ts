@@ -3,11 +3,7 @@ import { Task } from '../entities'
 import { generateId } from '../utils/generateId'
 
 type State = {
-  tasks: Record<string, Task>
-  meta: {
-    total: number
-    completed: number
-  }
+  tasks: Task[]
 }
 
 type Actions = {
@@ -18,11 +14,7 @@ type Actions = {
 }
 
 const INITIAL_STATE: State = {
-  tasks: {},
-  meta: {
-    total: 0,
-    completed: 0
-  }
+  tasks: [],
 }
 
 type TaskListStore = State & Actions
@@ -31,50 +23,53 @@ export const useTaskList = create<TaskListStore>((set) => ({
   ...INITIAL_STATE,
   createTodo: (name) => {
     set((state) => {
-      const createdAt = new Date()
-      const id = generateId()
-      const meta = {
-        total: state.meta.total + 1,
-        completed: state.meta.completed
+      const todo = {
+        id: generateId(),
+        name,
+        completed: false,
+        createdAt: new Date()
       }
-      const todo = { id, name, completed: false, createdAt }
-      state.meta.total++
 
-      return { tasks: {...state.tasks, [id]: todo }, meta }
+      return { tasks: [...state.tasks, todo ] }
     })
   },
   toggleTodo: (id) => {
     set((state) => {
-      const task = state.tasks[id]
-      const newValue = !task.completed
-      const completedCount = newValue ? state.meta.completed + 1 : state.meta.completed - 1
-      const completedAt = newValue ? new Date() : undefined
-      return {
-        tasks: { 
-          ...state.tasks,
-          [id]: { ...task, completed: newValue, completedAt }
-        },
-        meta: {
-          ...state.meta,
-          completed: completedCount
-        }}
+      return { tasks: state.tasks.map((task) => {
+        if (task.id === id) {
+          task.completed = !task.completed
+          task.completedAt = task.completed ? new Date() : undefined
+        }
+        return task
+      })}
     })
   },
   clearTodos: () => {
     set(() => INITIAL_STATE)
   },
   clearCompleted: () => {
-    set(({ tasks }) => {
-      const newList = {} as State['tasks']
-      let total = 0
-      for (const id in tasks) {
-        if (!tasks[id].completed) {
-          newList[id] = tasks[id]
-          total++
-        }
-      }
-      
-      return ({ tasks: newList, meta: { total, completed: 0 } })
-    })
+    set(({ tasks }) => ({ tasks: tasks.filter((task) => !task.completed) }))
   }
 }))
+
+const createTaskSelector = (kind: 'completed' | 'pending') => (state: TaskListStore) => ({
+  tasks: {
+    'completed': state.tasks.
+      filter(({ completed }) =>  completed).
+      sort((a, b) => (b.completedAt?.getTime()||0) - (a.completedAt?.getTime()||0)),
+    'pending': state.tasks.
+      filter(({ completed }) =>  !completed).
+      sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+  }[kind],
+})
+
+export const taskListSelector = {
+  completedTasks: createTaskSelector('completed'),
+  pendingTasks: createTaskSelector('pending'),
+  meta: ({ tasks }: TaskListStore) => ({
+    total: tasks.length,
+    completed: tasks.filter(({ completed }) => completed).length
+  }),
+  actions: ({ clearCompleted, clearTodos, createTodo, toggleTodo }: TaskListStore) =>
+    ({ clearCompleted, clearTodos, createTodo, toggleTodo })
+}

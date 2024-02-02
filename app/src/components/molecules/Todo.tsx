@@ -3,6 +3,7 @@ import { Task } from '../../entities'
 import { Checkbox } from '../atoms/Checkbox'
 import { Typography } from '../atoms/Typography'
 import { formatDate } from '../../utils/formatDate'
+import { memo } from 'react'
 
 type TodoProps = {
   value: Task
@@ -50,7 +51,7 @@ const Name = styled(Typography)<{ $checked?: boolean }>`
   ` : ''}
 `
 
-export function Todo({value, onClick }: TodoProps) {
+export const Todo = memo(function Todo({value, onClick }: TodoProps) {
   const { completed, createdAt, name } = value
   const color = completed ? 'subtle' : 'base'
 
@@ -63,4 +64,4 @@ export function Todo({value, onClick }: TodoProps) {
       </div>
     </Container>
   )
-}
+})

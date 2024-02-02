@@ -2,7 +2,7 @@ import { PlusCircle } from 'lucide-react'
 import { Button } from '../atoms/Button'
 import { Input } from '../atoms/Input'
 import { useEffect, useRef, useState } from 'react'
-import { useTaskList } from '../../state'
+import { taskListSelector, useTaskList } from '../../state'
 import styled from 'styled-components'
 
 const Form = styled.form`
@@ -17,7 +17,7 @@ type CreateTodoProps = {
 
 export function CreateTodo({ onCreate }:CreateTodoProps) {
   const [name, setName] = useState('')
-  const { createTodo } = useTaskList(({ createTodo }) => ({ createTodo }))
+  const { createTodo } = useTaskList(taskListSelector.actions)
   const ref = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
