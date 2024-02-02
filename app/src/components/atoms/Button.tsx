@@ -17,10 +17,9 @@ export const Button = styled.button<ButtonProps>`
     gap: ${theme.spacing(1)};
     font-size: ${theme.font.size.body};
     font-weight: ${theme.font.weight.regular};
-    height: ${theme.spacing(5)};
-    line-height: ${theme.spacing(2.5)};
-    padding: 0 ${theme.spacing(2.5)};
-    border-radius: ${theme.spacing(2.5)};
+    height: ${theme.spacing(6)};
+    padding: 0 ${theme.spacing(3)};
+    border-radius: ${theme.spacing(4)};
     color: ${theme.color.text.inverse};
     background-color: ${theme.color.iteraction.base};
     &:hover { background-color: ${theme.color.iteraction.hover} }
