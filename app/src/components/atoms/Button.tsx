@@ -5,7 +5,7 @@ type ButtonProps = {
   $disabled?: boolean
 }
 
-export const Button = styled.button<ButtonProps>`
+export const Button = styled.button.attrs<ButtonProps>(({$disabled}) => ({disabled: $disabled}))<ButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;

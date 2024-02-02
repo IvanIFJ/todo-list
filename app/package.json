@@ -1,5 +1,6 @@
 {
   "name": "todo-app",
+  "version": "1.0.1",
   "private": true,
   "description": "A simple todo app built based on Atomic Design principles",
   "homepage": "https://ivanifj.github.io/todo-list/",
@@ -11,7 +12,6 @@
     "type": "git",
     "url": "https://github.com/ivanifj"
   },
-  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
