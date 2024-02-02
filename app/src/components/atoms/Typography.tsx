@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Theme } from '../../styles/Theme'
 
 type TypographyProps = {
-  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'a'
+  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'a' | 'button'
   $variant?: 'heading' | 'subheading' | 'body' | 'caption' | 'caption2'
   $color?: keyof Theme['color']['text']
   children: React.ReactNode  
@@ -22,11 +22,22 @@ export const Typography = styled.p<TypographyProps>`
     }[$variant]};
     text-transform: ${['caption2'].includes($variant) ? 'uppercase' : 'none'};
 
-    ${as === 'a' ? `
+    ${(as === 'button') ? `
+      padding: ${theme.spacing(1)} ${theme.spacing(2)};
+      display: inline-block;
+    ` : ''}
+
+    ${(as === 'a' || as === 'button') ? `
+      transition: all 0.1s ease-out;
       cursor: pointer;
       text-decoration: none;
-      &:hover {
-        color: ${theme.color.text.accent};
+      border: none;
+      background-color: transparent;
+      border-radius: ${theme.boderRadius.small};
+      &:hover { color: ${theme.color.text.accent}; }
+      &:active {
+        color: ${theme.color.iteraction.active};
+        background-color: ${theme.color.surface.base};
       }
     ` : ''}
   `}
