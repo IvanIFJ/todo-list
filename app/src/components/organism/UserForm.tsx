@@ -37,13 +37,12 @@ export const UserForm = () => {
       value={name}
       onChange={handleChange}
       placeholder='Enter your name here'
+      style={{ textAlign: 'center' }}
     />
 
-    <div>
-      <Button $disabled={!name}>
-        Start Using the app
-      </Button>
-    </div>
+    <Button $disabled={!name}>
+      Start using the app
+    </Button>
     </Form>
   )
 }
