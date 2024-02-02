@@ -6,12 +6,10 @@ import { Modal } from '../components/molecules/Modal'
 import { CreateTodo } from '../components/organism/CreateTodo'
 import { TaskList } from '../components/organism/TaskList'
 import { BaseLayout } from '../components/templates/BaseLayout'
-
-const user = {
-  name: 'John Doe'
-}
+import { useUser } from '../state'
 
 export function Home() {
+  const user = useUser()
   const [modalOpened, setModalOpened] = useState(false)
 
   const closeModal = () => setModalOpened(false)
