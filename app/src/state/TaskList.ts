@@ -3,7 +3,7 @@ import { Task } from '../entities'
 import { generateId } from '../utils/generateId'
 
 type State = {
-  list: Record<string, Task>
+  tasks: Record<string, Task>
   meta: {
     total: number
     completed: number
@@ -14,10 +14,11 @@ type Actions = {
   createTodo: (name: string) => void
   toggleTodo: (id: string) => void
   clearTodos: () => void
+  clearCompleted: () => void
 }
 
 const INITIAL_STATE: State = {
-  list: {},
+  tasks: {},
   meta: {
     total: 0,
     completed: 0
@@ -39,18 +40,18 @@ export const useTaskList = create<TaskListStore>((set) => ({
       const todo = { id, name, completed: false, createdAt }
       state.meta.total++
 
-      return { list: {...state.list, [id]: todo }, meta }
+      return { tasks: {...state.tasks, [id]: todo }, meta }
     })
   },
   toggleTodo: (id) => {
     set((state) => {
-      const task = state.list[id]
+      const task = state.tasks[id]
       const newValue = !task.completed
       const completedCount = newValue ? state.meta.completed + 1 : state.meta.completed - 1
       const completedAt = newValue ? new Date() : undefined
       return {
-        list: { 
-          ...state.list,
+        tasks: { 
+          ...state.tasks,
           [id]: { ...task, completed: newValue, completedAt }
         },
         meta: {
@@ -61,5 +62,19 @@ export const useTaskList = create<TaskListStore>((set) => ({
   },
   clearTodos: () => {
     set(() => INITIAL_STATE)
+  },
+  clearCompleted: () => {
+    set(({ tasks }) => {
+      const newList = {} as State['tasks']
+      let total = 0
+      for (const id in tasks) {
+        if (!tasks[id].completed) {
+          newList[id] = tasks[id]
+          total++
+        }
+      }
+      
+      return ({ tasks: newList, meta: { total, completed: 0 } })
+    })
   }
 }))

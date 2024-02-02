@@ -13,6 +13,7 @@ const Container = styled.div<{ $checked?: boolean }>`
   display: flex;
   align-items: center;
   transition: all 0.2s ease;
+  width: 100%;
   ${({ theme }) => `
     box-shadow: 0px 2px 4px ${theme.color.boder};
     background-color: ${theme.color.surface.base};

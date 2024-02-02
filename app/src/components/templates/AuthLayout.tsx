@@ -28,7 +28,6 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(3)};
-  padding-bottom: ${({ theme }) => theme.spacing(6)};
   justify-content: center;
   align-items: center;
   text-align: center;

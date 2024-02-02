@@ -3,18 +3,24 @@ import styled from 'styled-components'
 import { useTaskList } from '../../state'
 import { Todo } from '../molecules/Todo'
 import { Task } from '../../entities'
+import { Typography } from '../atoms/Typography'
 
 const Container = styled.div`
   min-height: 350px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
   ${({ theme }) => `
     margin: ${theme.spacing(1)} 0;
   `}
 `
 
 export function TaskList() {
-  const { list, toggleTodo } = useTaskList(({ list, toggleTodo }) => ({ list, toggleTodo }))
-  const tasks = Object.values(list).reduce((result, task) => {
+  const { tasks, toggleTodo, clearCompleted, completed } = useTaskList(({ tasks, toggleTodo, clearCompleted, meta }) => ({ tasks, toggleTodo, clearCompleted, completed: meta.completed }))
+  const grouped = Object.values(tasks).reduce((result, task) => {
     if (task.completed) {
       return { ...result, completed: [...result.completed, task]}
     } 
@@ -24,9 +30,9 @@ export function TaskList() {
     pending: [],
   } as Record<'completed' | 'pending', Task[]>)
 
-  const sortedPending = useMemo(() => tasks.pending.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()), [tasks.pending])
-  const sortedCompleted = useMemo(() => tasks.completed.sort((a, b) =>
-    (b.completedAt?.getTime()||0) - (a.completedAt?.getTime()||0)), [tasks.completed]
+  const sortedPending = useMemo(() => grouped.pending.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()), [grouped.pending])
+  const sortedCompleted = useMemo(() => grouped.completed.sort((a, b) =>
+    (b.completedAt?.getTime()||0) - (a.completedAt?.getTime()||0)), [grouped.completed]
   )
 
   return (
@@ -38,6 +44,16 @@ export function TaskList() {
           value={task}
         />
       ))}
+      {grouped.completed.length !== 0 ? 
+        <Typography
+          as="button"
+          $variant='caption2'
+          $color='subtle'
+          onClick={clearCompleted}
+        >
+            Clear completed tasks ({completed})
+          </Typography>
+      : null}
       {sortedCompleted.map((task) => (
         <Todo
           key={task.id}
