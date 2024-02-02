@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Footer } from '../molecules/Footer'
 
 const Wrapper = styled.div`
   flex-direction: column;
@@ -39,6 +40,7 @@ export function AuthLayout({ children }: WithChildren) {
       <Container>
         <Main>{children}</Main>
       </Container>
+      <Footer />
     </Wrapper>
   )
 }

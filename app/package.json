@@ -1,7 +1,17 @@
 {
   "name": "todo-app",
   "private": true,
-  "version": "0.0.0",
+  "description": "A simple todo app built based on Atomic Design principles",
+  "homepage": "https://ivanifj.github.io/todo-list/",
+  "author": {
+    "name": "Ivan Freitas Jr",
+    "email": "freitasjr.ivan@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivanifj"
+  },
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
