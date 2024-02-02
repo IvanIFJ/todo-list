@@ -6,25 +6,30 @@ import { Modal } from '../components/molecules/Modal'
 import { CreateTodo } from '../components/organism/CreateTodo'
 import { TaskList } from '../components/organism/TaskList'
 import { BaseLayout } from '../components/templates/BaseLayout'
-import { useUser } from '../state'
+import { useTaskList, useUser } from '../state'
+import { EmptyTaskList } from '../components/organism/EmptyTaskList'
 
 export function Home() {
   const user = useUser()
   const [modalOpened, setModalOpened] = useState(false)
+  const { completed, total } = useTaskList(({ meta }) => meta)
+  const emptyList = total === 0
+  const title = emptyList ? 'No tasks' : `All tasks ( ${total - completed} / ${total} )`
 
   const closeModal = () => setModalOpened(false)
+  const openModal = () => setModalOpened(true)
 
   return (
     <BaseLayout>
       <Typography as="h2" $variant='heading'>What's up, {user.name}!</Typography>
       <br />
-      <Typography $variant='caption2' $color='subtle'>All tasks</Typography>
-      <TaskList />
+      <Typography $variant='caption2' $color='subtle'>{title}</Typography>
+      {emptyList ? <EmptyTaskList onClick={openModal} /> : <TaskList />}
 
       <Modal opened={modalOpened} onClose={closeModal}>
         <CreateTodo onCreate={closeModal} />
       </Modal>
-      <Fab icon={Plus} onClick={() => setModalOpened(true)} />
+      <Fab icon={Plus} onClick={openModal} />
     </BaseLayout>
   )
 }
