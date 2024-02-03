@@ -15,27 +15,37 @@ const Wrapper = styled.div`
   @media (max-height: 570px) {
     justify-content: flex-start;
   };
-
-  @media (max-width: ${650 + 32}px) {
-    padding: 0;
-  };
+  
+  ${({ theme }) => `
+    @media (max-width: ${theme.maxWidth}) {
+      justify-content: flex-start;
+      padding: 0;
+    };
+  `}
 `
 
 const Container = styled.div`
-  flex-shrink: 0;
+
   width: 100%;
   position: relative;
   ${({ theme }) => `
     max-width: ${theme.maxWidth};
     background-color: ${theme.color.surface.base};
     border-radius: ${theme.spacing(6)};
-    padding: ${theme.spacing(6)} ${theme.spacing(3)};
+    padding: ${theme.spacing(5)} ${theme.spacing(3)};
+    
+    @media (max-width: ${theme.maxWidth}) {
+      padding: ${theme.spacing(4)} ${theme.spacing(3)};
+      border-radius: 0 0 ${theme.spacing(6)} ${theme.spacing(6)};
+      height: 100%;
+    };
   `}
 `
 
 const Main = styled.main`
   flex-shrink: 0;
   height: 100%;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(3)};

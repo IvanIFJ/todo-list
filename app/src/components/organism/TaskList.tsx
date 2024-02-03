@@ -12,6 +12,9 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  justify-content: center;
+  min-height: 37vh;
+  height: 100%;
 
   ${({ theme }) => `
     margin: ${theme.spacing(1)} 0;
@@ -40,10 +43,10 @@ type TaskListProps = {
 export function TaskList({ onCreateTodo }: TaskListProps) {
   const { total } = useTaskList(taskListSelector.meta)
 
-  if (total === 0) return <EmptyTaskList onClick={onCreateTodo} />
+  if (total === 0) return <Container><EmptyTaskList onClick={onCreateTodo} /></Container>
 
   return (
-    <Container>
+    <Container style={{justifyContent: 'flex-start'}}>
       <List />
       <CompledTaskList />
     </Container>

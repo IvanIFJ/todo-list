@@ -57,7 +57,7 @@ type SessionUser = {
 - [ ] Add unit tests ensure state evolution
 - [ ] Add integration tests to ensure user interactions
 - [ ] Add Edit Task feature
-- [ ] Add resnposive layout
+- [x] Add resnposive layout
 - [ ] Enhance assecibility support
 - [ ] Add SettingsBar to change theme and clear all tasks
 - [ ] Create other theme variant

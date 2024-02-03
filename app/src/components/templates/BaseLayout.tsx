@@ -12,8 +12,13 @@ const Wrapper = styled.div`
   overflow-y: hidden;
   background-color: ${({ theme }) => theme.color.surface.accent};
   padding: ${({ theme }) => `${theme.spacing(2)}`};
-`
 
+  ${({ theme }) => `
+    @media (max-width: ${theme.maxWidth}) {
+      padding: 0;
+    };
+  `}
+`
 const Container = styled.div`
   overflow: hidden;
   flex-shrink: 1;
@@ -23,7 +28,13 @@ const Container = styled.div`
     max-width: ${theme.maxWidth};
     background-color: ${theme.color.surface.subtle};
     border-radius: ${theme.spacing(6)};
-    padding: ${theme.spacing(6)} ${theme.spacing(3)};
+    padding: ${theme.spacing(5)} ${theme.spacing(3)};
+    
+    @media (max-width: ${theme.maxWidth}) {
+      padding: ${theme.spacing(4)} ${theme.spacing(3)};
+      border-radius: 0 0 ${theme.spacing(6)} ${theme.spacing(6)};
+      height: 100%;
+    };
   `}
 `
 

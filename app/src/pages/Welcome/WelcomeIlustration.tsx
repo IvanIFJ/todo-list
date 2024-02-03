@@ -1,10 +1,17 @@
 import styled, { useTheme } from 'styled-components'
 
 const Container = styled.div`
-  ${({ theme }) => `
-    width: ${theme.spacing(35)};
+  transition: all 0.3s ease;
+  flex: 0.8;
+  &, svg {
+    height: 100%;
+  }
+  svg {
     max-width: 80%;
-  `}
+  }
+  @media (max-height: ${535}px) {
+    display: none;
+  }
 `
 
 export function WelcomeIllustration() {

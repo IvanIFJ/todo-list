@@ -13,6 +13,8 @@ export const Button = styled.button.attrs<ButtonProps>(({$disabled}) => ({disabl
   cursor: pointer;
   outline: none;
   transition: background-color 0.2s;
+  flex-shrink: 0;
+  flex-grow: 0;
   ${({ theme, $disabled }) => `
     gap: ${theme.spacing(1)};
     font-size: ${theme.font.size.body};

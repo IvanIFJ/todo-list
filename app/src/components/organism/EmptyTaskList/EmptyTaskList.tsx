@@ -7,10 +7,11 @@ import { EmptyIllustration } from './EmptyIllustration'
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   gap: ${({ theme }) => theme.spacing(2)};
   align-items: center;
   text-align: center;
+  overflow: hidden;
+  height: 100%;
 `
 
 type EmptyTaskListProps = {
