@@ -49,13 +49,14 @@ type SessionUser = {
 - CSS-in-JS ( [styled-components](https://styled-components.com/) ) to style components and manage theme tokens
 - [Lucid Icons](https://lucide.dev/) for the svg icons ( tree-shakable )
 - [Zustand](https://github.com/pmndrs/zustand) for state management.
+- Used [unDraw](https://undraw.co/illustrations) for custom svg illustrations
 
 ### Work in progress
-- [ ] Add logger middleware track state
-- [ ] Persist state on localstorage
-- [ ] Add Edit Task feature
+- [x] Add logger middleware track state
+- [x] Persist state on localstorage
 - [ ] Add unit tests ensure state evolution
 - [ ] Add integration tests to ensure user interactions
+- [ ] Add Edit Task feature
 - [ ] Add resnposive layout
 - [ ] Enhance assecibility support
 - [ ] Add SettingsBar to change theme and clear all tasks
