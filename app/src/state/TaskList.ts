@@ -1,6 +1,6 @@
 import { Task } from '../entities'
 import { generateId } from '../utils/generateId'
-import { create } from 'zustand'
+import { createStore } from './createStore'
 
 type State = {
   tasks: Task[]
@@ -19,7 +19,9 @@ const INITIAL_STATE: State = {
 
 type TaskListStore = State & Actions
 
-export const useTaskList = create<TaskListStore>((set) => ({
+const storeName = '@TaskList'
+
+export const useTaskList = createStore<TaskListStore>((set) => ({
   ...INITIAL_STATE,
   createTodo: (name) => {
     set((state) => {
@@ -31,7 +33,7 @@ export const useTaskList = create<TaskListStore>((set) => ({
       }
 
       return { tasks: [...state.tasks, todo ] }
-    })
+    }, false, { type: `${storeName}/createTodo` })
   },
   toggleTodo: (id) => {
     set((state) => {
@@ -42,15 +44,17 @@ export const useTaskList = create<TaskListStore>((set) => ({
         }
         return task
       })}
-    })
+    }, false, { type: `${storeName}/toggleTodo` })
   },
   clearTodos: () => {
-    set(() => INITIAL_STATE)
+    set(() => INITIAL_STATE, false, { type: `${storeName}/clearTodos` })
   },
   clearCompleted: () => {
-    set(({ tasks }) => ({ tasks: tasks.filter((task) => !task.completed) }))
+    set(({ tasks }) => ({
+      tasks: tasks.filter((task) => !task.completed)
+    }), false, { type: `${storeName}/clearCompleted` })
   }
-}))
+}), { name: storeName })
 
 const createTaskSelector = (kind: 'completed' | 'pending') => (state: TaskListStore) => ({
   tasks: {

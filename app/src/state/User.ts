@@ -1,4 +1,4 @@
-import { create } from 'zustand'
+import { createStore } from './createStore'
 
 type State = {
   name: string
@@ -14,9 +14,11 @@ const INITIAL_STATE: State = {
 
 type UserStore = State & Actions
 
-export const useUser = create<UserStore>((set) => ({
+const storeName = '@User'
+
+export const useUser = createStore<UserStore>((set) => ({
   ...INITIAL_STATE,
   setUser: (value) => {
-    set(() => ({ name: value }))
+    set(() => ({ name: value }), false, { type: `${storeName}/setUser` })
   }
-}))
+}), { name: storeName })
