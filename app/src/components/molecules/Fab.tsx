@@ -22,6 +22,9 @@ type FabProps = {
   icon: LucideIcon
 } & React.HTMLAttributes<HTMLButtonElement>
 
+/**
+ * Floating Action Button
+ */
 export function Fab({ icon: Icon, ...props }: FabProps) {
   return (
     <Container {...props}>
