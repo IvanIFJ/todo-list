@@ -6,24 +6,35 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.color.surface.accent};
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
+  height: 100%;
+  overflow-y: auto;
+  background-color: ${({ theme }) => theme.color.surface.accent};
+  padding: ${({ theme }) => `${theme.spacing(2)}`};
+  
+  @media (max-height: 570px) {
+    justify-content: flex-start;
+  };
+
+  @media (max-width: ${650 + 32}px) {
+    padding: 0;
+  };
 `
 
 const Container = styled.div`
-  max-width: 475px;
+  flex-shrink: 0;
   width: 100%;
-  height: 100%;
-  max-height: 650px;
-  background-color: ${({ theme }) => theme.color.surface.base};
-  border-radius: ${({ theme }) => theme.spacing(6)};
-  padding: ${({ theme }) => `${theme.spacing(6)} ${theme.spacing(3)}`};
   position: relative;
+  ${({ theme }) => `
+    max-width: ${theme.maxWidth};
+    background-color: ${theme.color.surface.base};
+    border-radius: ${theme.spacing(6)};
+    padding: ${theme.spacing(6)} ${theme.spacing(3)};
+  `}
 `
 
 const Main = styled.main`
+  flex-shrink: 0;
   height: 100%;
   display: flex;
   flex-direction: column;

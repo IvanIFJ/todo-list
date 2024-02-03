@@ -3,6 +3,8 @@ import { Typography } from '../atoms/Typography'
 
 const StyledFooter = styled.footer`
   margin: ${({ theme }) => theme.spacing(2)};
+  text-align: center;
+  flex: 0 0 auto;
 `
 
 import { version } from '../../../package.json'

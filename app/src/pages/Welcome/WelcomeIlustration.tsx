@@ -1,8 +1,10 @@
 import styled, { useTheme } from 'styled-components'
 
 const Container = styled.div`
-  padding: ${({ theme }) => `0 ${theme.spacing(6)}`};
-  width: 100%;
+  ${({ theme }) => `
+    width: ${theme.spacing(35)};
+    max-width: 80%;
+  `}
 `
 
 export function WelcomeIllustration() {

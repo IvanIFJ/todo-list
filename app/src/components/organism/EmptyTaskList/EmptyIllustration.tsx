@@ -1,8 +1,20 @@
 import styled, { useTheme } from 'styled-components'
 
 const Container = styled.div`
-  padding: ${({ theme }) => `0 ${theme.spacing(14)}`};
-  width: 100%;
+  transition: all 0.3s ease;
+  ${({ theme }) => `
+    width: ${theme.spacing(25)};
+    max-width: 80%;
+    @media (max-height: ${660}px) {
+      width: ${theme.spacing(16)};
+    };
+    @media (max-height: ${585}px) {
+      width: ${theme.spacing(10)};
+    };
+    @media (max-height: ${535}px) {
+      display: none;
+    };
+  `}
 `
 
 export function EmptyIllustration() {

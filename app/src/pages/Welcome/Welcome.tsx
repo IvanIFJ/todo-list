@@ -1,7 +1,12 @@
+import styled from 'styled-components'
 import { Typography } from '../../components/atoms/Typography'
 import { UserForm } from '../../components/organism/UserForm'
 import { AuthLayout } from '../../components/templates/AuthLayout'
 import { WelcomeIllustration } from './WelcomeIlustration'
+
+const StyledTypography = styled(Typography)`
+  padding: ${({ theme }) => `0 ${theme.spacing(3.5)}`};
+`
 
 export function Welcome() {
   return (
@@ -10,9 +15,9 @@ export function Welcome() {
 
       <WelcomeIllustration />
 
-      <Typography as="h2" $variant='subheading' style={{ padding: '0 32px' }}>
+      <StyledTypography as="h2" $variant='subheading'>
         Start getting things done with the simple Atomic To-Do List!
-      </Typography>
+      </StyledTypography>
 
       <UserForm />
     </AuthLayout>

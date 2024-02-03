@@ -7,7 +7,6 @@ import { CompledTaskList } from './CompletedTaskList'
 import { EmptyTaskList } from './EmptyTaskList'
 
 const Container = styled.div`
-  min-height: 350px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;

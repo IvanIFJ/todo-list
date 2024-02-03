@@ -52,6 +52,7 @@ export type BaseTheme = {
 
 const theme = {
   mode: 'light',
+  maxWidth: '650px',
   color: {
     iteraction: {
       base: '#076AF9',

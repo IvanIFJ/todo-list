@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const NormalizeStyles = createGlobalStyle`
+  html, body{
+    height: 100%;
+  }
   ${({ theme }) => `
     body {
       font-size: 16px;
