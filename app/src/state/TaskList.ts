@@ -1,6 +1,6 @@
-import { create } from 'zustand'
 import { Task } from '../entities'
 import { generateId } from '../utils/generateId'
+import { create } from 'zustand'
 
 type State = {
   tasks: Task[]
@@ -27,7 +27,7 @@ export const useTaskList = create<TaskListStore>((set) => ({
         id: generateId(),
         name,
         completed: false,
-        createdAt: new Date()
+        createdAt: new Date().getTime()
       }
 
       return { tasks: [...state.tasks, todo ] }
@@ -38,7 +38,7 @@ export const useTaskList = create<TaskListStore>((set) => ({
       return { tasks: state.tasks.map((task) => {
         if (task.id === id) {
           task.completed = !task.completed
-          task.completedAt = task.completed ? new Date() : undefined
+          task.completedAt = task.completed ? new Date().getTime() : undefined
         }
         return task
       })}
@@ -56,10 +56,10 @@ const createTaskSelector = (kind: 'completed' | 'pending') => (state: TaskListSt
   tasks: {
     'completed': state.tasks.
       filter(({ completed }) =>  completed).
-      sort((a, b) => (b.completedAt?.getTime()||0) - (a.completedAt?.getTime()||0)),
+      sort((a, b) => (b.completedAt || 0) - (a.completedAt || 0)),
     'pending': state.tasks.
       filter(({ completed }) =>  !completed).
-      sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+      sort((a, b) => b.createdAt - a.createdAt)
   }[kind],
 })
 
