@@ -8,11 +8,11 @@ type IconProps = {
   size?: 'small' | 'medium'
 }
 
-export function Icon({ icon: Icon, color = 'base', size = 'small' }: IconProps) {
+export function Icon({ icon: Icon, color = 'base', size = 'medium' }: IconProps) {
   const theme = useTheme()
   const colorHex = theme.color.text[color]
   const actualSize = {
-    small: 17,
+    small: 16,
     medium: 24,
   }[size]
 
