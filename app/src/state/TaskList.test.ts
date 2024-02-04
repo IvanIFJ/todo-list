@@ -7,7 +7,7 @@ describe("TaskListStore", () => {
     tasks.forEach(task => act(() => taskCreator(task)))
   }
 
-  it("should initialize with tasks", () => {
+  it("should initialize with no tasks", () => {
     const { result } = renderHook(() => useTaskList());
     expect(result.current.tasks).toEqual([]);
   });
