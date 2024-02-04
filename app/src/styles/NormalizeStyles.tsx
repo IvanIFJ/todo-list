@@ -16,7 +16,7 @@ export const NormalizeStyles = createGlobalStyle`
       font-weight: ${theme.font.weight.bold};
     }
   `}
-  html {
+  html, ul, ol {
     margin: 0;
     padding: 0;
   }
