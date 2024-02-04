@@ -49,6 +49,7 @@ const Container = styled.div<{ $checked?: boolean }>`
 `
 
 const Name = styled(Typography)<{ $checked?: boolean }>`
+  word-break: break-word;
   ${({ $checked }) => $checked ? `
     text-decoration: line-through;
   ` : ''}
