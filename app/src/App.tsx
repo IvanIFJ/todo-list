@@ -3,6 +3,14 @@ import { Welcome } from './pages/Welcome'
 import { useScreen } from './state'
 import { ThemeProvider } from './styles/Theme'
 
+export function AppProviders({ children }: WithChildren) {
+  return (
+    <ThemeProvider>
+      {children}
+    </ThemeProvider>
+  )
+}
+
 export function App() {
   const { current } = useScreen()
 
@@ -12,8 +20,8 @@ export function App() {
   }[current]
 
   return (
-    <ThemeProvider>
+    <AppProviders>
       <Screen />
-    </ThemeProvider>
+    </AppProviders>
   )
 }

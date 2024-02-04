@@ -23,7 +23,7 @@ export function EmptyTaskList({ onClick }: EmptyTaskListProps) {
     <Container>
       <EmptyIllustration />
       <Typography $variant='subheading'>Empty List</Typography>
-      <Typography $variant='body'>Start by adding your fist task</Typography>
+      <Typography $variant='body'>Start by adding your first task</Typography>
       <Button onClick={onClick} type="submit">Create first task <PlusCircle size={20} /> </Button>
     </Container>
   );

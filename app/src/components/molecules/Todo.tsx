@@ -56,8 +56,8 @@ export const Todo = memo(function Todo({value, onClick }: TodoProps) {
   const color = completed ? 'subtle' : 'base'
 
   return (
-    <Container $checked={completed}>
-      <Checkbox onClick={onClick} $checked={completed}/>
+    <Container $checked={completed} role='listitem'>
+      <Checkbox onClick={onClick} $checked={completed} role="checkbox" aria-checked={completed} />
       <div>
         <Name $color={color} $checked={completed} as="span" $variant='body'>{name}</Name>
         <Typography $color={color} $variant='caption2'>{formatDate(createdAt)}</Typography>

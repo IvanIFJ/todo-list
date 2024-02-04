@@ -54,8 +54,8 @@ type SessionUser = {
 ### Work in progress
 - [x] Add logger middleware track state
 - [x] Persist state on localstorage
-- [ ] Add unit tests ensure state evolution
-- [ ] Add integration tests to ensure user interactions
+- [x] Add unit tests ensure state evolution
+- [x] Add integration tests to ensure user interactions
 - [ ] Add Edit Task feature
 - [x] Add resnposive layout
 - [ ] Enhance assecibility support

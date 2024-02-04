@@ -31,7 +31,7 @@ export function Home() {
       <Modal opened={modalOpened} onClose={closeModal}>
         <CreateTodo onCreate={closeModal} />
       </Modal>
-      <Fab icon={Plus} onClick={openModal} />
+      <Fab icon={Plus} onClick={openModal} data-testid="Fab: Create Task" />
     </BaseLayout>
   )
 }

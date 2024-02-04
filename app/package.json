@@ -1,6 +1,6 @@
 {
   "name": "todo-app",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "private": true,
   "description": "A simple todo app built based on Atomic Design principles",
   "homepage": "https://ivanifj.github.io/todo-list/",
@@ -30,6 +30,7 @@
   "devDependencies": {
     "@testing-library/react": "^14.2.1",
     "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
