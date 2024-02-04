@@ -1,16 +1,16 @@
-import { Task } from '../entities'
+import { TaskEntity } from '../entities'
 import { generateId } from '../utils/generateId'
 import { createStore } from './createStore'
 
 type State = {
-  tasks: Task[]
+  tasks: TaskEntity[]
 }
 
 type Actions = {
-  createTodo: (name: string) => void
-  toggleTodo: (id: string) => void
-  editTodo: (id: string, newValue: string) => void
-  clearTodos: () => void
+  createTask: (name: string) => void
+  toggleTask: (id: string) => void
+  editTask: (id: string, newValue: string) => void
+  clearTasks: () => void
   clearCompleted: () => void
 }
 
@@ -24,19 +24,19 @@ const storeName = '@TaskList'
 
 export const useTaskList = createStore<TaskListStore>((set) => ({
   ...INITIAL_STATE,
-  createTodo: (name) => {
+  createTask: (name) => {
     set((state) => {
-      const todo = {
+      const task = {
         id: generateId(),
         name,
         completed: false,
         createdAt: new Date().getTime()
       }
 
-      return { tasks: [...state.tasks, todo ] }
-    }, false, { type: `${storeName}/createTodo` })
+      return { tasks: [...state.tasks, task ] }
+    }, false, { type: `${storeName}/createTask` })
   },
-  toggleTodo: (id) => {
+  toggleTask: (id) => {
     set((state) => {
       return { tasks: state.tasks.map((task) => {
         if (task.id === id) {
@@ -45,9 +45,9 @@ export const useTaskList = createStore<TaskListStore>((set) => ({
         }
         return task
       })}
-    }, false, { type: `${storeName}/toggleTodo` })
+    }, false, { type: `${storeName}/toggleTask` })
   },
-  editTodo: (id, newValue) => {
+  editTask: (id, newValue) => {
     set((state) => {
       return { tasks: state.tasks.map((task) => {
         if (task.id === id) {
@@ -55,10 +55,10 @@ export const useTaskList = createStore<TaskListStore>((set) => ({
         }
         return task
       })}
-    }, false, { type: `${storeName}/editTodo` })
+    }, false, { type: `${storeName}/editTask` })
   },
-  clearTodos: () => {
-    set(() => INITIAL_STATE, false, { type: `${storeName}/clearTodos` })
+  clearTasks: () => {
+    set(() => INITIAL_STATE, false, { type: `${storeName}/clearTask` })
   },
   clearCompleted: () => {
     set(({ tasks }) => ({
@@ -85,6 +85,6 @@ export const taskListSelector = {
     total: tasks.length,
     completed: tasks.filter(({ completed }) => completed).length
   }),
-  actions: ({ clearCompleted, clearTodos, createTodo, toggleTodo, editTodo }: TaskListStore) =>
-    ({ clearCompleted, clearTodos, createTodo, toggleTodo, editTodo })
+  actions: ({ clearCompleted, clearTasks, createTask, toggleTask, editTask }: TaskListStore) =>
+    ({ clearCompleted, clearTasks, createTask, toggleTask, editTask })
 }

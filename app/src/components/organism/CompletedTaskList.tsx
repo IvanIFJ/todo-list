@@ -1,13 +1,13 @@
 import { taskListSelector, useTaskList } from '../../state'
 import { Typography } from '../atoms/Typography'
-import { Todo } from '../molecules/Todo'
+import { Task } from '../molecules/Task'
 
 import { memo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
 export const CompledTaskList = memo(function CompledTaskList() {
   const { tasks } = useTaskList(useShallow(taskListSelector.completedTasks))
-  const { clearCompleted, toggleTodo } = useTaskList(taskListSelector.actions)
+  const { clearCompleted, toggleTask } = useTaskList(taskListSelector.actions)
 
   if(tasks.length === 0) return null
 
@@ -22,10 +22,10 @@ export const CompledTaskList = memo(function CompledTaskList() {
           Clear completed tasks ({tasks.length})
       </Typography>
       {tasks.map((task) => (
-        <Todo
+        <Task
           key={task.id}
           value={task}
-          onClick={() => toggleTodo(task.id)}
+          onClick={() => toggleTask(task.id)}
         />
       ))}
     </>

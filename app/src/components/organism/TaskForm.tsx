@@ -15,7 +15,7 @@ const Form = styled.form`
 export function TaskForm() {
   const { payload, close } = useModal()
   const [name, setName] = useState(payload?.name || '')
-  const { createTodo, editTodo } = useTaskList(taskListSelector.actions)
+  const { createTask, editTask } = useTaskList(taskListSelector.actions)
   const ref = useRef<HTMLInputElement>(null)
   const label = payload ? 'Save' : 'Create task'
   const Icon = payload ? Save : PlusCircle
@@ -29,7 +29,7 @@ export function TaskForm() {
 
   const handeSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    payload ? editTodo(payload.id, name) : createTodo(name)
+    payload ? editTask(payload.id, name) : createTask(name)
     close()
   }
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Task } from '../../entities'
+import { TaskEntity } from '../../entities'
 import { Checkbox } from '../atoms/Checkbox'
 import { Typography } from '../atoms/Typography'
 import { formatDate } from '../../utils/formatDate'
@@ -8,8 +8,8 @@ import { IconButton } from './IconButton'
 import { Pencil } from 'lucide-react/'
 import { useModal } from './Modal'
 
-type TodoProps = {
-  value: Task
+type TaskProps = {
+  value: TaskEntity
   onClick?: () => void
 }
 
@@ -58,7 +58,7 @@ const Content = styled.div`
   flex: 1;
 `
 
-export const Todo = memo(function Todo({ value, onClick }: TodoProps) {
+export const Task = memo(function Task({ value, onClick }: TaskProps) {
   const { completed, createdAt, name, id } = value
   const color = completed ? 'subtle' : 'base'
   const { open } = useModal()

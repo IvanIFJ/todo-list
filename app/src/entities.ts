@@ -1,4 +1,4 @@
-export type Task = {
+export type TaskEntity = {
   id: string
   name: string
   completed: boolean

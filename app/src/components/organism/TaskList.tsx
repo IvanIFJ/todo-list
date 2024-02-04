@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { shallow } from 'zustand/shallow'
 import { useStoreWithEqualityFn } from 'zustand/traditional'
 import { taskListSelector, useTaskList } from '../../state'
-import { Todo } from '../molecules/Todo'
+import { Task } from '../molecules/Task'
 import { CompledTaskList } from './CompletedTaskList'
 import { EmptyTaskList } from './EmptyTaskList'
 
@@ -23,13 +23,13 @@ const Container = styled.div`
 
 function List() {
   const { tasks } = useStoreWithEqualityFn(useTaskList, taskListSelector.pendingTasks, shallow)
-  const { toggleTodo } = useTaskList(taskListSelector.actions)
+  const { toggleTask } = useTaskList(taskListSelector.actions)
  
   return (<>
     {tasks.map((task) => (
-      <Todo
+      <Task
         key={task.id}
-        onClick={() => toggleTodo(task.id)}
+        onClick={() => toggleTask(task.id)}
         value={task}
       />
     ))}
