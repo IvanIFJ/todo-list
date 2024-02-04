@@ -20,7 +20,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -37,6 +36,8 @@ jobs:
           cache-dependency-path: app/yarn.lock
       - name: Install dependencies
         run: cd app && yarn
+      - name: Run unit and indegration tests
+        run: cd app && yarn test
       - name: Build
         run: cd app && yarn build
       - name: Setup Pages
