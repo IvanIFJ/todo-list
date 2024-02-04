@@ -4,6 +4,9 @@ import { Checkbox } from '../atoms/Checkbox'
 import { Typography } from '../atoms/Typography'
 import { formatDate } from '../../utils/formatDate'
 import { memo } from 'react'
+import { IconButton } from './IconButton'
+import { Pencil } from 'lucide-react/'
+import { useModal } from './Modal'
 
 type TodoProps = {
   value: Task
@@ -51,17 +54,30 @@ const Name = styled(Typography)<{ $checked?: boolean }>`
   ` : ''}
 `
 
-export const Todo = memo(function Todo({value, onClick }: TodoProps) {
-  const { completed, createdAt, name } = value
+const Content = styled.div`
+  flex: 1;
+`
+
+export const Todo = memo(function Todo({ value, onClick }: TodoProps) {
+  const { completed, createdAt, name, id } = value
   const color = completed ? 'subtle' : 'base'
+  const { open } = useModal()
 
   return (
     <Container $checked={completed} role='listitem'>
       <Checkbox onClick={onClick} $checked={completed} role="checkbox" aria-checked={completed} />
-      <div>
+      <Content>
         <Name $color={color} $checked={completed} as="span" $variant='body'>{name}</Name>
         <Typography $color={color} $variant='caption2'>{formatDate(createdAt)}</Typography>
-      </div>
+      </Content>
+      {!completed &&
+        <IconButton
+          aria-label='Edit task'
+          $size='small'
+          icon={Pencil}
+          onClick={() => open({ id, name })}
+          style={{ flexShrink: 0 }}
+        />}
     </Container>
   )
 })

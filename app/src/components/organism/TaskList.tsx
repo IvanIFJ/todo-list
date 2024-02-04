@@ -36,14 +36,10 @@ function List() {
   </>)
 }
 
-type TaskListProps = {
-  onCreateTodo: () => void
-}
-
-export function TaskList({ onCreateTodo }: TaskListProps) {
+export function TaskList() {
   const { total } = useTaskList(taskListSelector.meta)
 
-  if (total === 0) return <Container><EmptyTaskList onClick={onCreateTodo} /></Container>
+  if (total === 0) return <Container><EmptyTaskList /></Container>
 
   return (
     <Container style={{justifyContent: 'flex-start'}}>

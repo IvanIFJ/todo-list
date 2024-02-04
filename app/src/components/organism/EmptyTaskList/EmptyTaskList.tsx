@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Button } from '../../atoms/Button'
 import { Typography } from '../../atoms/Typography'
 import { EmptyIllustration } from './EmptyIllustration'
+import { useModal } from '../../molecules/Modal'
 
 const Container = styled.div`
   display: flex;
@@ -14,17 +15,15 @@ const Container = styled.div`
   height: 100%;
 `
 
-type EmptyTaskListProps = {
-  onClick: () => void
-}
+export function EmptyTaskList() {
+  const { open } = useModal()
 
-export function EmptyTaskList({ onClick }: EmptyTaskListProps) {
   return (
     <Container>
       <EmptyIllustration />
       <Typography $variant='subheading'>Empty List</Typography>
       <Typography $variant='body'>Start by adding your first task</Typography>
-      <Button onClick={onClick} type="submit">Create first task <PlusCircle size={20} /> </Button>
+      <Button onClick={() => open()} type="submit">Create first task <PlusCircle size={20} /> </Button>
     </Container>
   );
 }

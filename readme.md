@@ -56,8 +56,9 @@ type SessionUser = {
 - [x] Persist state on localstorage
 - [x] Add unit tests ensure state evolution
 - [x] Add integration tests to ensure user interactions
-- [ ] Add Edit Task feature
+- [x] Add Edit Task feature
 - [x] Add resnposive layout
+- [ ] Fix todo x task
 - [ ] Enhance assecibility support
 - [ ] Add SettingsBar to change theme and clear all tasks
 - [ ] Create other theme variant

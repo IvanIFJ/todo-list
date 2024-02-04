@@ -1,18 +1,22 @@
-import { render, getByText, getAllByRole, getByTestId, getByRole, getByPlaceholderText, fireEvent } from '@testing-library/react'
+import { render, getByLabelText, getByText, getAllByRole, getByTestId, getByRole, getByPlaceholderText, fireEvent } from '@testing-library/react'
 import { describe, it, expect } from 'vitest';
 import { act } from 'react-dom/test-utils'
 import { Home } from './Home'
 import { AppProviders } from '../App'
 
 describe('App', () => {
+  const typeTaskAndSave = (container: HTMLElement, name: string) => {
+    const textInput = getByPlaceholderText<HTMLInputElement>(container, 'Type your task here')
+    const submitButton = getByText<HTMLButtonElement>(container, /Create task|Save/)
+    act(() => fireEvent.change(textInput, { target: { value: name } }))
+    act(() => submitButton.click())
+  }
+
   const createTask = (container: HTMLElement, name: string) => {
     const createTaskButton = getByTestId(container, /Fab: Create Task/)
     act(() => fireEvent.click(createTaskButton))
 
-    const textInput = getByPlaceholderText<HTMLInputElement>(container, 'Type your task here')
-    const submitButton = getByText<HTMLButtonElement>(container, 'Create task')
-    act(() => fireEvent.change(textInput, { target: { value: name } }))
-    act(() => submitButton.click())
+    typeTaskAndSave(container, name)
   }
 
   const getTask = (container: HTMLElement, name: string) => {
@@ -60,6 +64,12 @@ describe('App', () => {
       const checkbox = getByRole(task, 'checkbox')
       expect(checkbox.getAttribute('aria-checked')).toBe('false')
     })
+
+    // edit task
+    const editButon =  getByLabelText(getTask(container, 'Buy bread').task, /Edit/)
+    act(() => fireEvent.click(editButon))
+
+    typeTaskAndSave(container, 'Buy multigrain bread')
+    expect(getByText(container, /Buy multigrain bread/)).toBeTruthy()
   })
 })
-

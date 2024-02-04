@@ -1,9 +1,8 @@
 import { Plus } from 'lucide-react'
-import { useCallback, useState } from 'react'
 import { Typography } from '../components/atoms/Typography'
 import { Fab } from '../components/molecules/Fab'
-import { Modal } from '../components/molecules/Modal'
-import { CreateTodo } from '../components/organism/CreateTodo'
+import { Modal, useModal } from '../components/molecules/Modal'
+import { TaskForm } from '../components/organism/TaskForm'
 import { TaskList } from '../components/organism/TaskList'
 import { BaseLayout } from '../components/templates/BaseLayout'
 import { taskListSelector, useTaskList, useUser } from '../state'
@@ -18,20 +17,16 @@ function TaskCounter() {
 
 export function Home() {
   const user = useUser()
-  const [modalOpened, setModalOpened] = useState(false)
-  const closeModal = useCallback(() => setModalOpened(false), [])
-  const openModal = useCallback(() => setModalOpened(true), [])
+  const { open } = useModal()
 
   return (
     <BaseLayout>
       <Typography as="h2" $variant='heading'>What's up, {user.name}!</Typography>
       <br />
       <TaskCounter />
-      <TaskList onCreateTodo={openModal} />
-      <Modal opened={modalOpened} onClose={closeModal}>
-        <CreateTodo onCreate={closeModal} />
-      </Modal>
-      <Fab icon={Plus} onClick={openModal} data-testid="Fab: Create Task" />
+      <TaskList />
+      <Modal><TaskForm /></Modal>
+      <Fab icon={Plus} onClick={() => open()} data-testid="Fab: Create Task" />
     </BaseLayout>
   )
 }
