@@ -78,7 +78,9 @@ const theme = {
     surface: {
       base: '#FFFFFF',
       subtle: '#F9FAFE',
-      accent: '#D8DFF5'
+      accent: '#D8DFF5',
+      inverse: '#0D2052',
+      backdrop: 'rgba(13, 32, 83, 0.3)'
     },
     boder: '#E9EFFD'
   },

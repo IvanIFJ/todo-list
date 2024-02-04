@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Header } from '../molecules/Header'
 import { Footer } from '../molecules/Footer'
+import { SideMenu } from '../molecules/SideMenu'
 
 const Wrapper = styled.div`
   flex-direction: column;
@@ -51,7 +52,10 @@ export function BaseLayout({ children }: WithChildren) {
     <Wrapper>
       <Container>
         <Header />
-        <Main>{children}</Main>
+        <Main>
+          {children}
+          <SideMenu />
+        </Main>
       </Container>
       <Footer />
     </Wrapper>

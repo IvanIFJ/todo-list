@@ -59,8 +59,9 @@ type SessionUser = {
 - [x] Add Edit Task feature
 - [x] Add resnposive layout
 - [x] Fix todo x task -> "To-Do List" is an app that allows users to manage tasks
+- [x] Add SideMenu to change theme and clear all tasks
 - [ ] Enhance assecibility support
-- [ ] Add SettingsBar to change theme and clear all tasks
 - [ ] Create other theme variant
 - [ ] Add custom linter rules
 - [ ] Add task filters
+- [ ] Add to docs: run, test, deploy, build, tooling
