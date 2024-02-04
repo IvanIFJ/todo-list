@@ -63,4 +63,15 @@ describe("TaskListStore", () => {
     expect(result.current.tasks).toHaveLength(1);
     expect(result.current.tasks[0].name).toBe('Task 3');
   })
+
+  it("should be able to edit a task", () => {
+    const { result } = renderHook(() => useTaskList());
+    const tasks = ['Task 1', 'Task 2', 'Task 3'];
+    
+    createTasks(tasks, result.current.createTodo)
+    const [task1] = result.current.tasks;
+
+    act(() => result.current.editTodo(task1.id, 'Task 1 edited'));
+    expect(result.current.tasks[0].name).toBe('Task 1 edited');
+  })
 });

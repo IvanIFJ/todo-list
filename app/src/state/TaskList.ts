@@ -9,6 +9,7 @@ type State = {
 type Actions = {
   createTodo: (name: string) => void
   toggleTodo: (id: string) => void
+  editTodo: (id: string, newValue: string) => void
   clearTodos: () => void
   clearCompleted: () => void
 }
@@ -46,6 +47,16 @@ export const useTaskList = createStore<TaskListStore>((set) => ({
       })}
     }, false, { type: `${storeName}/toggleTodo` })
   },
+  editTodo: (id, newValue) => {
+    set((state) => {
+      return { tasks: state.tasks.map((task) => {
+        if (task.id === id) {
+          task.name = newValue
+        }
+        return task
+      })}
+    }, false, { type: `${storeName}/editTodo` })
+  },
   clearTodos: () => {
     set(() => INITIAL_STATE, false, { type: `${storeName}/clearTodos` })
   },
@@ -74,6 +85,6 @@ export const taskListSelector = {
     total: tasks.length,
     completed: tasks.filter(({ completed }) => completed).length
   }),
-  actions: ({ clearCompleted, clearTodos, createTodo, toggleTodo }: TaskListStore) =>
-    ({ clearCompleted, clearTodos, createTodo, toggleTodo })
+  actions: ({ clearCompleted, clearTodos, createTodo, toggleTodo, editTodo }: TaskListStore) =>
+    ({ clearCompleted, clearTodos, createTodo, toggleTodo, editTodo })
 }
