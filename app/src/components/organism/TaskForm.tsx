@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { taskListSelector, useTaskList } from '../../state'
 import styled from 'styled-components'
 import { useModal } from '../molecules/Modal'
+import { useOnKeyDown } from '../../hooks/useOnKeyDown'
 
 const Form = styled.form`
   display: flex;
@@ -23,6 +24,7 @@ export function TaskForm() {
   useEffect(() => {
     ref.current?.focus()
   }, [])
+  useOnKeyDown((event: KeyboardEvent) => { event.key === 'Escape' && close() })
 
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
     setName(target.value)
