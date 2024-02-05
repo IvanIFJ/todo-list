@@ -1,8 +1,8 @@
 import { Settings } from 'lucide-react'
 import styled from 'styled-components'
 import { Typography } from '../atoms/Typography'
-import { IconButton } from './IconButton'
-import { useSideMenu } from './SideMenu'
+import { IconButton } from '../atoms/IconButton'
+import { useSideMenu } from '../molecules/SideMenu'
 
 const StyledHeader = styled.header`
   display: flex;

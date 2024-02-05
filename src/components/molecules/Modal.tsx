@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { IconButton } from './IconButton'
+import { IconButton } from '../atoms/IconButton'
 import { X } from 'lucide-react'
 import { createStore } from '../../state/createStore'
 

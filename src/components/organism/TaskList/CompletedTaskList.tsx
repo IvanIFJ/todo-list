@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { taskListSelector, useTaskList } from '../../state'
-import { Typography } from '../atoms/Typography'
-import { Task } from '../molecules/Task'
+import { taskListSelector, useTaskList } from '../../../state'
+import { Typography } from '../../atoms/Typography'
+import { Task } from '../../molecules/Task'
 
 import { memo } from 'react'
 import { useShallow } from 'zustand/react/shallow'

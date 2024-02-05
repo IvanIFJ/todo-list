@@ -31,6 +31,26 @@ The app should have the following features:
   - Deployment with GithubPages at [ivanifj.github.io/todo-list](https://ivanifj.github.io/todo-list/)
   - Keyboard friendly with accessible elements
 
+### Atomic Desing
+The app is built using the Atomic Design methodology. The components are organized in the following folders:
+
+#### Implementation
+- **Atoms**: The smallest components of the application.
+  - `Button`, `Checkbox`, `Icon`, `Input`, `Typography`, `Fab`, `IconButton`
+- **Molecules**: Components that are composed by Atoms that hold a single responsibility, like a specific form.
+  - `SideMenu`, `Modal`, `Task`, `TaskForm`, `UserForm`
+- **Organisms**: Components that are composed by Molecules and Atoms, like a header or a page secion.
+  - `Header`, `Footer`, `TaskList`
+- **Templates**: Components that are composed by all previous elements to create page layouts.
+  - `AuthLayout`, `BaseLayout`
+- **Pages**: Composed by all other elements, pages represents the final user interface, like a Login page.
+  - `Welcome`, `Home`
+
+#### Other
+
+- **Design tokens**: are base design decisions centralized in a single file to store tokens, like `colors`, `fonts` and `spacings` used to style the components.
+
+
 ## Development
 ### Running locally
 In order to run the application, you must install [Node](https://nodejs.org/en/) with specified version on package.json.

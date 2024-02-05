@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { Typography } from '../../components/atoms/Typography'
-import { UserForm } from '../../components/organism/UserForm'
 import { AuthLayout } from '../../components/templates/AuthLayout'
 import { WelcomeIllustration } from './WelcomeIlustration'
+import { UserForm } from '../../components/molecules/UserForm'
 
 const StyledTypography = styled(Typography)`
   max-width: ${({ theme }) => theme.spacing(39)};

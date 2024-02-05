@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { Header } from '../molecules/Header'
-import { Footer } from '../molecules/Footer'
+import { Header } from '../organism/Header'
+import { Footer } from '../organism/Footer'
 import { SideMenu } from '../molecules/SideMenu'
 
 const Wrapper = styled.div`

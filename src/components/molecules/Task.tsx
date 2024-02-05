@@ -4,9 +4,9 @@ import { Checkbox } from '../atoms/Checkbox'
 import { Typography } from '../atoms/Typography'
 import { formatDate } from '../../utils/formatDate'
 import { memo } from 'react'
-import { IconButton } from './IconButton'
 import { Pencil } from 'lucide-react/'
 import { useModal } from './Modal'
+import { IconButton } from '../atoms/IconButton'
 
 type TaskProps = {
   value: TaskEntity

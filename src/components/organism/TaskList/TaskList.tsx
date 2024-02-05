@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 import { shallow } from 'zustand/shallow'
 import { useStoreWithEqualityFn } from 'zustand/traditional'
-import { taskListSelector, useTaskList } from '../../state'
-import { Task } from '../molecules/Task'
+import { taskListSelector, useTaskList } from '../../../state'
 import { CompledTaskList } from './CompletedTaskList'
 import { EmptyTaskList } from './EmptyTaskList'
+import { Task } from '../../molecules/Task'
+
 
 const Container = styled.div`
   overflow-y: auto;

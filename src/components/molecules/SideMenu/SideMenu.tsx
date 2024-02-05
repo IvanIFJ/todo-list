@@ -6,8 +6,8 @@ import { useTaskList } from '../../../state'
 import { stores } from '../../../state/createStore'
 import { useChangeTheme } from '../../../styles'
 import { Typography } from '../../atoms/Typography'
-import { IconButton } from '../IconButton'
 import { useEffect, useRef } from 'react'
+import { IconButton } from '../../atoms/IconButton'
 
 const Container = styled.div<{ $opened: boolean }>`
   position: absolute;

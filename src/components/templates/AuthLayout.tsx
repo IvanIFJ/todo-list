@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Footer } from '../molecules/Footer'
+import { Footer } from '../organism/Footer'
 
 const Wrapper = styled.div`
   flex-direction: column;

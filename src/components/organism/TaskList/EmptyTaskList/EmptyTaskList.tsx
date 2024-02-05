@@ -1,9 +1,9 @@
 import { PlusCircle } from 'lucide-react'
 import styled from 'styled-components'
-import { Button } from '../../atoms/Button'
-import { Typography } from '../../atoms/Typography'
+import { Button } from '../../../atoms/Button'
+import { Typography } from '../../../atoms/Typography'
 import { EmptyIllustration } from './EmptyIllustration'
-import { useModal } from '../../molecules/Modal'
+import { useModal } from '../../../molecules/Modal'
 
 const Container = styled.div`
   display: flex;
