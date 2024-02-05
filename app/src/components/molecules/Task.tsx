@@ -65,7 +65,6 @@ export const Task = memo(function Task({ value, onClick }: TaskProps) {
   const { open } = useModal()
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLOrSVGElement>) => {
-    console.log('event.key', event.key)
     if (event.key === 'Enter' || event.key === ' ') {
       onClick && onClick()
     }

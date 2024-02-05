@@ -14,12 +14,12 @@ export const Typography = styled.p<TypographyProps>`
     color: ${theme.color.text[$color]};
     font-family: ${theme.font.family};
     font-weight: ${{
-      heading: theme.font.weight.bold,
-      subheading: theme.font.weight.bold,
-      body: theme.font.weight.regular,
-      caption: theme.font.weight.regular,
-      caption2: theme.font.weight.bold,
-    }[$variant]};
+    heading: theme.font.weight.bold,
+    subheading: theme.font.weight.bold,
+    body: theme.font.weight.regular,
+    caption: theme.font.weight.regular,
+    caption2: theme.font.weight.bold,
+  }[$variant]};
     text-transform: ${['caption2'].includes($variant) ? 'uppercase' : 'none'};
 
     ${(as === 'a' || as === 'button') ? `

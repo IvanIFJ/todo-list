@@ -4,14 +4,17 @@ import { PersistOptions, devtools, persist } from 'zustand/middleware'
 
 export type WithMiddlewares<Store> = StateCreator<
     Store,
-    [["zustand/devtools", never], ["zustand/persist", unknown]],
+    [['zustand/devtools', never], ['zustand/persist', unknown]],
     [],
     Store
 >
 
-export const stores = new Set<{ name: string, resetFn: () => void}>();
+export const stores = new Set<{ name: string, resetFn:() => void}>()
 
-export const createStore = <Store>(store: WithMiddlewares<Store>, persistOpts: PersistOptions<Store>) => {
+export const createStore = <Store>(
+  store: WithMiddlewares<Store>,
+  persistOpts: PersistOptions<Store>
+) => {
   const name = persistOpts.name || store.name
   const createdStore = (import.meta.env.DEV) ?
     create<Store>()(devtools(persist(store, persistOpts), { name })) :

@@ -62,6 +62,5 @@ type SessionUser = {
 - [x] Add SideMenu to change theme and clear all tasks
 - [x] Create other theme variant
 - [x] Enhance assecibility support (keyboard friendly, aria-labels)
-- [ ] Add custom linter rules
-- [ ] Add task filters
+- [x] Add custom linter rules
 - [ ] Add to docs: run, test, deploy, build, tooling

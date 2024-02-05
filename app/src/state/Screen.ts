@@ -23,6 +23,6 @@ const storeName = '@Screen'
 export const useScreen = createStore<TaskListStore>((set) => ({
   ...INITIAL_STATE,
   navigate: (screen) => {
-    set(() => ({ current: screen}), false, { type: `${storeName}/navigate` })
+    set(() => ({ current: screen }), false, { type: `${storeName}/navigate` })
   }
 }), { name: storeName })

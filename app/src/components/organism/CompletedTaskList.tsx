@@ -14,7 +14,7 @@ export const CompledTaskList = memo(function CompledTaskList() {
   const { tasks } = useTaskList(useShallow(taskListSelector.completedTasks))
   const { clearCompleted, toggleTask } = useTaskList(taskListSelector.actions)
 
-  if(tasks.length === 0) return null
+  if (tasks.length === 0) return null
 
   return (
     <>

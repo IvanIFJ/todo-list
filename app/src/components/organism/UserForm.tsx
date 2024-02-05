@@ -11,7 +11,7 @@ const Form = styled.form`
 `
 
 export const UserForm = () => {
-  const [ name, setName ] = useState('')
+  const [name, setName] = useState('')
   const { setUser } = useUser()
   const { navigate } = useScreen()
   const ref = useRef<HTMLInputElement>(null)
@@ -31,18 +31,18 @@ export const UserForm = () => {
   }
 
   return (
-  <Form onSubmit={handleSubmit}>
-    <Input
-      ref={ref}
-      value={name}
-      onChange={handleChange}
-      placeholder='Enter your name here'
-      style={{ textAlign: 'center' }}
-    />
+    <Form onSubmit={handleSubmit}>
+      <Input
+        ref={ref}
+        value={name}
+        onChange={handleChange}
+        placeholder='Enter your name here'
+        style={{ textAlign: 'center' }}
+      />
 
-    <Button $disabled={!name} aria-label='Start using the app'>
+      <Button $disabled={!name} aria-label='Start using the app'>
       Start using the app
-    </Button>
+      </Button>
     </Form>
   )
 }

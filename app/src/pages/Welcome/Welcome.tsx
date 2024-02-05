@@ -7,6 +7,7 @@ import { WelcomeIllustration } from './WelcomeIlustration'
 const StyledTypography = styled(Typography)`
   max-width: ${({ theme }) => theme.spacing(39)};
 `
+
 const Content = styled.div`
   display: flex;
   height: 100%;

@@ -33,29 +33,27 @@ export const useTaskList = createStore<TaskListStore>((set) => ({
         createdAt: new Date().getTime()
       }
 
-      return { tasks: [...state.tasks, task ] }
+      return { tasks: [...state.tasks, task] }
     }, false, { type: `${storeName}/createTask` })
   },
   toggleTask: (id) => {
-    set((state) => {
-      return { tasks: state.tasks.map((task) => {
-        if (task.id === id) {
-          task.completed = !task.completed
-          task.completedAt = task.completed ? new Date().getTime() : undefined
-        }
-        return task
-      })}
-    }, false, { type: `${storeName}/toggleTask` })
+    set((state) => ({ tasks: state.tasks.map((task) => {
+      if (task.id === id) {
+        task.completed = !task.completed
+        task.completedAt = task.completed ? new Date().getTime() : undefined
+      }
+
+      return task
+    }) }), false, { type: `${storeName}/toggleTask` })
   },
   editTask: (id, newValue) => {
-    set((state) => {
-      return { tasks: state.tasks.map((task) => {
-        if (task.id === id) {
-          task.name = newValue
-        }
-        return task
-      })}
-    }, false, { type: `${storeName}/editTask` })
+    set((state) => ({ tasks: state.tasks.map((task) => {
+      if (task.id === id) {
+        task.name = newValue
+      }
+
+      return task
+    }) }), false, { type: `${storeName}/editTask` })
   },
   clearTasks: () => {
     set(() => INITIAL_STATE, false, { type: `${storeName}/clearTask` })

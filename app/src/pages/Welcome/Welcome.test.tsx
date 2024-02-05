@@ -1,18 +1,19 @@
 import { render, getByText, getByPlaceholderText, fireEvent } from '@testing-library/react'
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest'
 import { App } from '../../App'
 import { act } from 'react-dom/test-utils'
 
 describe('App', () => {
   it('Welcome', () => {
-    const { container } = render(<App />);
+    const { container } = render(<App />)
     const inputPlaceholder = 'Enter your name here'
     const userInput = getByPlaceholderText<HTMLInputElement>(container, inputPlaceholder)
     const startButton = getByText<HTMLButtonElement>(container, 'Start using the app')
+    const welcomeMessage = /Start getting things done with the simple Atomic To-Do List!/
 
     // verify welcome message
     expect(getByText(container, 'Atomic To-Do List', { exact: true, selector: 'h1' })).toBeTruthy()
-    expect(getByText(container, /Start getting things done with the simple Atomic To-Do List!/)).toBeTruthy()  
+    expect(getByText(container, welcomeMessage)).toBeTruthy()  
 
     // check focused element
     expect(document.activeElement?.getAttribute('placeholder')).toBe(inputPlaceholder)
@@ -29,4 +30,3 @@ describe('App', () => {
     expect(getByText(container, /What's up, John Doe!/)).toBeTruthy()
   })
 })
-

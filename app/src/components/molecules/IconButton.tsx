@@ -39,15 +39,15 @@ const StyledButton = styled.button<ButtonProps>`
     `}
 
     ${{
-      small: `
+    small: `
         height: ${theme.spacing(4)};
         width: ${theme.spacing(4)};
       `,
-      medium: `
+    medium: `
         height: ${theme.spacing(6)};
         width: ${theme.spacing(6)};
       `
-    }[$size]}
+  }[$size]}
   `}
 `
 
@@ -60,7 +60,7 @@ type IconButtonProps = {
 
 export function IconButton({ icon, $size = 'medium', ...props }: IconButtonProps) {
   return (
-    <StyledButton  {...{ ...props, $size: $size }}>
+    <StyledButton  {...{ ...props, $size }}>
       {<Icon icon={icon} size={$size} />}
     </StyledButton>
   )

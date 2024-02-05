@@ -42,7 +42,7 @@ export function TaskList() {
   if (total === 0) return <Container><EmptyTaskList /></Container>
 
   return (
-    <Container style={{justifyContent: 'flex-start'}}>
+    <Container style={{ justifyContent: 'flex-start' }}>
       <List />
       <CompledTaskList />
     </Container>

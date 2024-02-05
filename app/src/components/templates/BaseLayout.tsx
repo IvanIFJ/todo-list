@@ -20,6 +20,7 @@ const Wrapper = styled.div`
     };
   `}
 `
+
 const Container = styled.div`
   overflow: hidden;
   flex-shrink: 1;

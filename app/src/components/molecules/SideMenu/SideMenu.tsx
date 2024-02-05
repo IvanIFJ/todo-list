@@ -22,7 +22,7 @@ const Container = styled.div<{ $opened: boolean }>`
   justify-content: flex-end;
   ${({ theme, $opened }) => `
     transition: ${$opened ? 'left 0s 0s ease' : 'left 0s 0.4s ease'};
-    left: ${$opened ? `0` : `180%`};
+    left: ${$opened ? '0' : '180%'};
     a {
       color: ${theme.color.text.inverse};
     }
@@ -66,6 +66,7 @@ const Backdrop = styled.div<{ $opened: boolean }>`
 
 function CloseSiteMenuButton() {
   const { close } = useSideMenu()
+
   useOnKeyDown((event: KeyboardEvent) => { event.key === 'Escape' && close() })
 
   return <IconButton aria-label='Close' onClick={close} icon={X} $size="small" $inverse />
@@ -79,32 +80,33 @@ export function SideMenu() {
 
   const handleClearData = () => {
     // prevent theme changes
-    [...stores].filter(({name}) => name !== '@Theme').forEach(({ resetFn }) => resetFn())
+    [...stores].filter(({ name }) => name !== '@Theme').forEach(({ resetFn }) => { resetFn() })
   }
 
   useEffect(() => {
     // wait for the animation to finish
     const timeout = opened ? setTimeout(() => ref.current?.focus(), 500) : undefined
+
     return () => clearTimeout(timeout)
   }, [opened])
 
   return (
     <Container $opened={opened}>
       <Backdrop $opened={opened} onClick={close} />
-        <nav>
-          {opened && <>
+      <nav>
+        {opened && <>
           <CloseSiteMenuButton />
 
           <Typography $color="subtle" $variant='caption2'>Manage data:</Typography>
-          <Typography ref={ref} as="a" href="javascript:void(0)" $variant='body' onClick={clearTasks}>Reset tasks</Typography>
-          <Typography as="a" href="javascript:void(0)" $variant='body' onClick={handleClearData}>Clear all data</Typography>
+          <Typography ref={ref} as="a" href="#!" $variant='body' onClick={clearTasks}>Reset tasks</Typography>
+          <Typography as="a" href="#!" $variant='body' onClick={handleClearData}>Clear all data</Typography>
           <br />
           <Typography $color='subtle' $variant='caption2'>Change the theme:</Typography>
-          {current !== 'default' ? <Typography as="a" href="javascript:void(0)" $variant='body' onClick={() => changeTheme('default')}>Default theme</Typography> : null}
-          {current !== 'dark' ? <Typography as="a" href="javascript:void(0)" $variant='body' onClick={() => changeTheme('dark')}>Dark theme</Typography> : null}
-          {current !== 'olive' ? <Typography as="a" href="javascript:void(0)" $variant='body' onClick={() => changeTheme('olive')}>Olive theme</Typography> : null}
-          </>}
-        </nav>
+          {current !== 'default' ? <Typography as="a" href="#!" $variant='body' onClick={() => changeTheme('default')}>Default theme</Typography> : null}
+          {current !== 'dark' ? <Typography as="a" href="#!" $variant='body' onClick={() => changeTheme('dark')}>Dark theme</Typography> : null}
+          {current !== 'olive' ? <Typography as="a" href="#!" $variant='body' onClick={() => changeTheme('olive')}>Olive theme</Typography> : null}
+        </>}
+      </nav>
     </Container>
-  );
+  )
 }

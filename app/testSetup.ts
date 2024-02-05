@@ -1,10 +1,10 @@
 import { afterEach } from 'vitest'
 import { cleanup } from '@testing-library/react'
-import { stores } from './src/state/createStore';
+import { stores } from './src/state/createStore'
 
 afterEach(() => {
   cleanup()
-  stores.forEach(({ resetFn }) => resetFn());
+  stores.forEach(({ resetFn }) => { resetFn() })
 })
 
 // mock window.matchMedia
@@ -20,4 +20,4 @@ Object.defineProperty(window, 'matchMedia', {
     removeEventListener: () => {},
     dispatchEvent: () => {},
   })
-});
+})
