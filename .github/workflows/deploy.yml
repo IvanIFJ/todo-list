@@ -33,20 +33,20 @@ jobs:
         with:
           node-version: 20
           cache: 'yarn'
-          cache-dependency-path: app/yarn.lock
+          cache-dependency-path: yarn.lock
       - name: Install dependencies
-        run: cd app && yarn
+        run: yarn
       - name: Run unit and indegration tests
-        run: cd app && yarn test
+        run: yarn test
       - name: Build
-        run: cd app && yarn build
+        run: yarn build
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           # Upload dist repository
-          path: './app/dist'
+          path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
