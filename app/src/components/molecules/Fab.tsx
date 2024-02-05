@@ -2,7 +2,7 @@ import { LucideIcon } from 'lucide-react'
 import styled from 'styled-components'
 import { Button } from '../atoms/Button'
 
-const Container = styled(Button)`
+const StyledButton = styled(Button)`
   padding: 0;
   position: absolute;
   display: flex;
@@ -20,6 +20,7 @@ const Container = styled(Button)`
 
 type FabProps = {
   icon: LucideIcon
+  'aria-label': string
 } & React.HTMLAttributes<HTMLButtonElement>
 
 /**
@@ -27,8 +28,8 @@ type FabProps = {
  */
 export function Fab({ icon: Icon, ...props }: FabProps) {
   return (
-    <Container {...props}>
+    <StyledButton {...props}>
       {<Icon />}
-    </Container>
+    </StyledButton>
   )
 }

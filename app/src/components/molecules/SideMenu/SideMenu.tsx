@@ -7,6 +7,7 @@ import { stores } from '../../../state/createStore'
 import { useChangeTheme } from '../../../styles'
 import { Typography } from '../../atoms/Typography'
 import { IconButton } from '../IconButton'
+import { useEffect, useRef } from 'react'
 
 const Container = styled.div<{ $opened: boolean }>`
   position: absolute;
@@ -32,12 +33,13 @@ const Container = styled.div<{ $opened: boolean }>`
     flex-direction: column;
     align-items: flex-start;
     height: 100%;
-    transition: all 0.4s ease-in-out;
+    transition: right 0.3s ease-out;
     ${({ theme, $opened }) => `
+    width: ${theme.spacing(26)};
     gap: ${theme.spacing(2)};
     padding: ${theme.spacing(6)} ${theme.spacing(6)} ${theme.spacing(6)} ${theme.spacing(4)};
     background-color: ${theme.color.surface.inverse};
-    right: ${$opened ? '0' : '-100%'};
+    right: ${$opened ? '0' : `-${theme.spacing(26)}`};
     `}
 
     button {
@@ -56,7 +58,7 @@ const Backdrop = styled.div<{ $opened: boolean }>`
   height: 100%;
   width: 100%;
   z-index: 0;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   ${({ theme, $opened }) => `
     background-color: ${$opened ? theme.color.surface.backdrop : 'transparent'};
   `}
@@ -66,18 +68,25 @@ function CloseSiteMenuButton() {
   const { close } = useSideMenu()
   useOnKeyDown((event: KeyboardEvent) => { event.key === 'Escape' && close() })
 
-  return <IconButton onClick={close} icon={X} $size="small" $inverse />
+  return <IconButton aria-label='Close' onClick={close} icon={X} $size="small" $inverse />
 }
 
 export function SideMenu() {
   const { opened, close } = useSideMenu()
   const { clearTasks } = useTaskList()
   const { changeTheme, current } = useChangeTheme()
+  const ref = useRef<HTMLAnchorElement>(null)
 
   const handleClearData = () => {
     // prevent theme changes
     [...stores].filter(({name}) => name !== '@Theme').forEach(({ resetFn }) => resetFn())
   }
+
+  useEffect(() => {
+    // wait for the animation to finish
+    const timeout = opened ? setTimeout(() => ref.current?.focus(), 500) : undefined
+    return () => clearTimeout(timeout)
+  }, [opened])
 
   return (
     <Container $opened={opened}>
@@ -87,13 +96,13 @@ export function SideMenu() {
           <CloseSiteMenuButton />
 
           <Typography $color="subtle" $variant='caption2'>Manage data:</Typography>
-          <Typography as="a" href="void" $variant='body' onClick={handleClearData}>Clear all data</Typography>
-          <Typography as="a" href="void" $variant='body' onClick={clearTasks}>Reset tasks</Typography>
+          <Typography ref={ref} as="a" href="javascript:void(0)" $variant='body' onClick={clearTasks}>Reset tasks</Typography>
+          <Typography as="a" href="javascript:void(0)" $variant='body' onClick={handleClearData}>Clear all data</Typography>
           <br />
           <Typography $color='subtle' $variant='caption2'>Change the theme:</Typography>
-          {current !== 'default' ? <Typography as="a" href="void" $variant='body' onClick={() => changeTheme('default')}>Default theme</Typography> : null}
-          {current !== 'dark' ? <Typography as="a" href="void" $variant='body' onClick={() => changeTheme('dark')}>Dark theme</Typography> : null}
-          {current !== 'olive' ? <Typography as="a" href="void" $variant='body' onClick={() => changeTheme('olive')}>Olive theme</Typography> : null}
+          {current !== 'default' ? <Typography as="a" href="javascript:void(0)" $variant='body' onClick={() => changeTheme('default')}>Default theme</Typography> : null}
+          {current !== 'dark' ? <Typography as="a" href="javascript:void(0)" $variant='body' onClick={() => changeTheme('dark')}>Dark theme</Typography> : null}
+          {current !== 'olive' ? <Typography as="a" href="javascript:void(0)" $variant='body' onClick={() => changeTheme('olive')}>Olive theme</Typography> : null}
           </>}
         </nav>
     </Container>

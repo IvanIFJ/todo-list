@@ -2,7 +2,9 @@ import { LucideIcon } from 'lucide-react'
 import styled from 'styled-components'
 import { Icon } from '../atoms/Icon'
 
-const StyledButton = styled.button<Pick<IconButtonProps, '$size' | '$inverse'>>`
+type ButtonProps = Pick<IconButtonProps, '$size' | '$inverse'>
+
+const StyledButton = styled.button<ButtonProps>`
   padding: 0;
   display: flex;
   justify-content: center;
@@ -51,13 +53,14 @@ const StyledButton = styled.button<Pick<IconButtonProps, '$size' | '$inverse'>>`
 
 type IconButtonProps = {
   icon: LucideIcon
+  'aria-label': string
   $size?: 'small' | 'medium'
   $inverse?: boolean
 } & React.HTMLAttributes<HTMLButtonElement>
 
 export function IconButton({ icon, $size = 'medium', ...props }: IconButtonProps) {
   return (
-    <StyledButton {...{ ...props, $size: $size }}>
+    <StyledButton  {...{ ...props, $size: $size }}>
       {<Icon icon={icon} size={$size} />}
     </StyledButton>
   )

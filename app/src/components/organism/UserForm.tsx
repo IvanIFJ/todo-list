@@ -40,7 +40,7 @@ export const UserForm = () => {
       style={{ textAlign: 'center' }}
     />
 
-    <Button $disabled={!name}>
+    <Button $disabled={!name} aria-label='Start using the app'>
       Start using the app
     </Button>
     </Form>

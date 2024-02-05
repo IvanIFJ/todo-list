@@ -46,7 +46,7 @@ export function TaskForm() {
         required
       />
       <div>
-        <Button type="submit" $disabled={!name}>{label} <Icon size={20} /> </Button>
+        <Button aria-label={label} type="submit" $disabled={!name}>{label} <Icon size={20} /> </Button>
       </div>
     </Form>
   )

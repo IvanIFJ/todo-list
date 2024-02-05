@@ -23,7 +23,7 @@ export function EmptyTaskList() {
       <EmptyIllustration />
       <Typography $variant='subheading'>Empty List</Typography>
       <Typography $variant='body'>Start by adding your first task</Typography>
-      <Button onClick={() => open()} type="submit">Create first task <PlusCircle size={20} /> </Button>
+      <Button aria-label='Create first task' onClick={() => open()} type="submit">Create first task <PlusCircle size={20} /> </Button>
     </Container>
   );
 }

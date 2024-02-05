@@ -3,9 +3,10 @@ import styled from 'styled-components'
 
 type ButtonProps = {
   $disabled?: boolean
+  'aria-label': string
 }
 
-export const Button = styled.button.attrs<ButtonProps>(({$disabled}) => ({disabled: $disabled}))<ButtonProps>`
+export const Button = styled.button.attrs<ButtonProps>(({ $disabled }) => ({ disabled: $disabled }))<ButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,8 +1,8 @@
-import { render, getByLabelText, getByText, getAllByRole, getByTestId, getByRole, getByPlaceholderText, fireEvent } from '@testing-library/react'
-import { describe, it, expect } from 'vitest';
+import { fireEvent, getAllByRole, getByLabelText, getByPlaceholderText, getByRole, getByText, render } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
-import { Home } from './Home'
+import { describe, expect, it } from 'vitest'
 import { AppProviders } from '../App'
+import { Home } from './Home'
 
 describe('App', () => {
   const typeTaskAndSave = (container: HTMLElement, name: string) => {
@@ -13,7 +13,7 @@ describe('App', () => {
   }
 
   const createTask = (container: HTMLElement, name: string) => {
-    const createTaskButton = getByTestId(container, /Fab: Create Task/)
+    const createTaskButton = getByLabelText(container, /Create new task/)
     act(() => fireEvent.click(createTaskButton))
 
     typeTaskAndSave(container, name)
@@ -34,7 +34,7 @@ describe('App', () => {
 
   it('Home', () => {
     const { container } = render(<Home />, { wrapper: AppProviders });
-    const createTaskButton = getByTestId(container, /Fab: Create Task/)
+    const createTaskButton = getByLabelText(container, /Create new task/)
 
     // check list empty state
     expect(getByText(container, /No tasks/)).toBeTruthy()

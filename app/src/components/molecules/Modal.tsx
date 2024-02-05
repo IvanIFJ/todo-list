@@ -25,7 +25,7 @@ export function Modal({ children }: WithChildren) {
 
   return (
     <Container $opened={opened}>
-      <IconButton icon={X} onClick={close} />
+      <IconButton aria-label='Close' icon={X} onClick={close} />
       <br />
       {opened ? children : null}
     </Container>

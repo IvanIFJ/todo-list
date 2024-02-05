@@ -16,7 +16,7 @@ export function Header() {
   return (
     <StyledHeader>
       <Typography as="h1" $variant='subheading' $color='subtle'>Atomic To-Do List</Typography>
-      <IconButton onClick={open} icon={Settings} />
+      <IconButton aria-label='Open settings' onClick={open} icon={Settings} />
     </StyledHeader>
   )
 }

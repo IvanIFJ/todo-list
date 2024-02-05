@@ -22,6 +22,7 @@ export const CompledTaskList = memo(function CompledTaskList() {
         as="button"
         $variant='caption2'
         $color='subtle'
+        aria-label='Clear completed tasks'
         onClick={clearCompleted}
       >
           Clear completed tasks ({tasks.length})

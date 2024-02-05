@@ -26,7 +26,7 @@ export function Home() {
       <TaskCounter />
       <TaskList />
       <Modal><TaskForm /></Modal>
-      <Fab icon={Plus} onClick={() => open()} data-testid="Fab: Create Task" />
+      <Fab aria-label='Create new task' icon={Plus} onClick={() => open()} />
     </BaseLayout>
   )
 }
