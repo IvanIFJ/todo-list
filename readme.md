@@ -1,4 +1,5 @@
 # Atomic To-Do List
+[ivanifj.github.io/todo-list](https://ivanifj.github.io/todo-list/)
 ## Coding Challenge: Createa a To-Do List app using **Atomic Design** and **Typescript**
 
 Read the [complete project requirements](requirements.md).
@@ -36,7 +37,7 @@ The app is built using the Atomic Design methodology. The components are organiz
 
 #### Implementation
 - **Atoms**: The smallest components of the application.
-  - `Button`, `Checkbox`, `Icon`, `Input`, `Typography`, `Fab`, `IconButton`
+  - `Button`, `Checkbox`, `Fab`, `Icon`, `IconButton`, `Input`, `Typography`
 - **Molecules**: Components that are composed by Atoms that hold a single responsibility, like a specific form.
   - `SideMenu`, `Modal`, `Task`, `TaskForm`, `UserForm`
 - **Organisms**: Components that are composed by Molecules and Atoms, like a header or a page secion.
