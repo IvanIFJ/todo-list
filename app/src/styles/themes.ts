@@ -5,7 +5,8 @@ export const baseTheme = {
     iteraction: {
       base: '#076AF9',
       active: '#1167E2',
-      hover: '#1E7AFF'
+      hover: '#1E7AFF',
+      focus: 'rgb(51 255 232 / 55%)'
     },
     disabled:{
       base: '#B2B6BC',
@@ -15,7 +16,8 @@ export const baseTheme = {
     link: {
       base: '#076AF9',
       active: '#1167E2',
-      hover: '#1E7AFF'
+      hover: '#1E7AFF',
+      focus: 'yellow'
     },
     text: { 
       base: '#1C2C52',
@@ -64,7 +66,8 @@ export const darkTheme = {
     iteraction: {
       base: '#a2c2ff',
       active: '#859dcb',
-      hover: '#b4ceff'
+      hover: '#b4ceff',
+      focus: 'rgb(86 255 242 / 45%)'
     },
     disabled:{
       base: '#404040',
@@ -74,7 +77,8 @@ export const darkTheme = {
     link: {
       base: '#a2c2ff',
       active: '#859dcb',
-      hover: '#b4ceff'
+      hover: '#b4ceff',
+      focus: 'rgb(255 255 255 / 25%)'
     },
     text: { 
       base: '#dbdee3',
@@ -84,15 +88,10 @@ export const darkTheme = {
     },
     surface: {
       base: '#1b1c20',
-      // base: '#0d101b',
       subtle: '#23252e',
-      // subtle: '#101629',
       accent: '#343847',
-      // accent: '#131f43',
       inverse: '#fff',
-      // inverse: '#fff',
       backdrop: 'rgba(0, 0, 0, 0.3)'
-      // backdrop: 'rgba(0, 0, 0, 0.3)'
     },
     boder: '#30408'
   },
@@ -120,13 +119,14 @@ export const darkTheme = {
 }
 
 export const oliveTheme = {
-  name: 'base',
+  name: 'olive',
   maxWidth: '650px',
   color: {
     iteraction: {
       base: '#ec8132',
       active: '#e8670c',
-      hover: '#ff8e3d'
+      hover: '#ff8e3d',
+      focus: 'rgb(63 255 0 / 62%)'
     },
     disabled:{
       base: '#B2B6BC',
@@ -136,7 +136,8 @@ export const oliveTheme = {
     link: {
       base: '#ec8132',
       active: '#e8670c',
-      hover: '#ff8e3d'
+      hover: '#ff8e3d',
+      focus: 'rgb(63 255 0 / 62%)'
     },
     text: { 
       base: '#242e35',

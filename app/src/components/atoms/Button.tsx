@@ -15,6 +15,7 @@ export const Button = styled.button.attrs<ButtonProps>(({$disabled}) => ({disabl
   transition: background-color 0.2s;
   flex-shrink: 0;
   flex-grow: 0;
+  outline: 2px solid transparent;
   ${({ theme, $disabled }) => `
     gap: ${theme.spacing(1)};
     font-size: ${theme.font.size.body};
@@ -25,7 +26,8 @@ export const Button = styled.button.attrs<ButtonProps>(({$disabled}) => ({disabl
     color: ${theme.color.text.inverse};
     background-color: ${theme.color.iteraction.base};
     &:hover { background-color: ${theme.color.iteraction.hover} }
-    &:active { background-color: ${theme.color.iteraction.active} }
+    &:focus { outline: 2px solid ${theme.color.iteraction.focus} }
+    &:active { background-color: ${theme.color.iteraction.active}; outline: none; }
     ${$disabled ? `
       cursor: not-allowed;
       color: ${theme.color.text.subtle};

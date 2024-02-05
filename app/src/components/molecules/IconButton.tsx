@@ -2,17 +2,19 @@ import { LucideIcon } from 'lucide-react'
 import styled from 'styled-components'
 import { Icon } from '../atoms/Icon'
 
-const Container = styled.button<Pick<IconButtonProps, '$size' | '$inverse'>>`
+const StyledButton = styled.button<Pick<IconButtonProps, '$size' | '$inverse'>>`
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
   cursor: pointer;
-  transition: all ease 0.2s;
+  transition: color ease 0.2s, background-color ease 0.2s;
+  outline: 2px solid transparent;
   ${({ theme, $size = 'medium', $inverse }) => `
     border-radius: ${theme.boderRadius.large};
-
+    &:focus { outline: 2px solid ${theme.color.iteraction.focus} }
+    &:active { outline: 2px solid transparent; }
     ${$inverse ? `
       background-color: ${theme.color.surface.backdrop};
       svg { stroke: ${theme.color.text.inverse} }
@@ -55,8 +57,8 @@ type IconButtonProps = {
 
 export function IconButton({ icon, $size = 'medium', ...props }: IconButtonProps) {
   return (
-    <Container {...{ ...props, $size: $size }}>
+    <StyledButton {...{ ...props, $size: $size }}>
       {<Icon icon={icon} size={$size} />}
-    </Container>
+    </StyledButton>
   )
 }

@@ -22,22 +22,32 @@ export const Typography = styled.p<TypographyProps>`
     }[$variant]};
     text-transform: ${['caption2'].includes($variant) ? 'uppercase' : 'none'};
 
-    ${(as === 'button') ? `
-      padding: ${theme.spacing(1)} ${theme.spacing(2)};
-      display: inline-block;
-    ` : ''}
-
     ${(as === 'a' || as === 'button') ? `
       transition: all 0.1s ease-out;
       cursor: pointer;
       text-decoration: none;
       border: none;
       background-color: transparent;
-      border-radius: ${theme.boderRadius.small};
       &:hover { color: ${theme.color.text.accent}; }
       &:active {
         color: ${theme.color.iteraction.active};
         background-color: ${theme.color.surface.base};
+      }
+    ` : ''}
+
+    ${(as === 'button') ? `
+      padding: ${theme.spacing(1)} ${theme.spacing(2)};
+      display: inline-block;
+      border-radius: ${theme.boderRadius.small};
+      outline: 2px solid transparent;
+      &:focus { outline: 2px solid ${theme.color.iteraction.active}; }
+    ` : ''}
+
+    ${(as === 'a') ? `
+      border-bottom: 2px solid transparent;
+      &:focus {
+        border-bottom: 2px solid ${theme.color.iteraction.focus};
+        outline: none;
       }
     ` : ''}
   `}
