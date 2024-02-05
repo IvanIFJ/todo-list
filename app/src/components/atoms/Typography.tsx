@@ -40,7 +40,7 @@ export const Typography = styled.p<TypographyProps>`
       display: inline-block;
       border-radius: ${theme.boderRadius.small};
       outline: 2px solid transparent;
-      &:focus { outline: 2px solid ${theme.color.iteraction.active}; }
+      &:focus { outline: 2px solid ${theme.color.iteraction.focus}; }
     ` : ''}
 
     ${(as === 'a') ? `
