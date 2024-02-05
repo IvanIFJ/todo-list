@@ -2,17 +2,15 @@
 
 <img src="atomic-design-process.png" width="100%" />
 
-## Create an interactive to-do list application using the principles of [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/). Utilize `TypeScript` for enhanced type safety and structured code.
+## Create an interactive to-do list application using the principles of [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/). Utilize `TypeScript` for enhanced type safety and structured code.
 
-### Technical requirements
+### Requirements
 
  - Implement the Atomic Design methodology in structuring your project. Divide the application into atoms, molecules, organisms, templates, and pages.
  - Create a TypeScript interface for the task object, defining properties such as `id`, `name`, and `completed`.
  - Design and style the application using CSS, focusing on Atomic Design principles. Consider the styling for atoms (e.g., buttons, input fields), molecules (e.g., task item), and organisms (e.g., task list).
  - Apply TypeScript for handling the logic of adding, marking as completed, and removing tasks.
  - Ensure that TypeScript types are used consistently throughout the application.
-
-### Product requirements
  - Include an input field to add new tasks.
  - Display a list of tasks with checkboxes to mark them as completed.
  - Implement functionality to remove completed tasks.

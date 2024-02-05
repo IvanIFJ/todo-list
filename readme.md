@@ -1,66 +1,70 @@
-# Atomic Design To-Do List App Challenge
+# Atomic To-Do List
+## Coding Challenge: Createa a To-Do List app using **Atomic Design** and **Typescript**
 
-##### Read the [project requirements, here](requirements.md).
-To-Do List App using Atomic Design, Typescript and React. 
+Read the [complete project requirements](requirements.md).
 
-### Atomic Design elements
-- **Theme Tokens**: Base for creation of components
-  - Colors, Mode
-- **Atoms**: The smaller and reusable piece of design, usually base html elements.
-  - `Typography`, `Input`, `Button`, `Checkbox`, `Icon`
-- **Molecules**: A reusable code that combines some Atoms to create ui components.
-  - `IconButton`, `NewTaskForm`, `Task`, `Tab`, `Card`
-- **Organism**: A combination of Molecules and Atoms to create a piece of UI that might be interactable
-  - `Header`, `TaskList`, `EmptyList`, `FilterTabs` 
-- **Templates**: A combination of Organisms, Molecules and Atoms to create a page layout
-  - `FullWindowLayout`, `BaseAppLayout`
-- **Pages**: A Templates in action, giving pages live.
-  - `Welcome`, `Home`
+The app should have the following features:
+#### Basic Requirements:
+- [x] Add a new task
+- [x] Mark a task as completed
+- [x] Remove completed tasks
+- [x] Filter tasks by status 
+- [x] Responsive layout
+- [x] Automated tests
+- [x] Documentation
 
-### Entities
+#### Bonus: 
+  - [x] Persist tasks in local storage
+  - [x] Linting and code formatting
+  - [x] Edit task name
+  - [x] Animations or transitions
+  - [x] Test coverage
 
-```ts
-type Task = {
-  id: string
-  name: string
-  completed: boolean
-  createdAt: Date
-}
+##### Other:
+  - Fake user authentication
+  - Side menu with extra settings
+  - Custom components built with [styled-components](https://styled-components.com/)
+  - Custom `light`, `dark` and `olive` themes.
+  - Custom linter rules using [eslint](https://eslint.org/)
+  - Custom illustrations with [unDraw](https://undraw.co/illustrations) and [figma](https://www.figma.com/)
+  - Custom icons with [Lucid Icons](https://lucide.dev/)
+  - Deployment with GithubPages at [ivanifj.github.io/todo-list](https://ivanifj.github.io/todo-list/)
+  - Keyboard friendly with accessible elements
 
-type SessionUser = {
-  name: string
-}
+## Development
+### Running locally
+In order to run the application, you must install [Node](https://nodejs.org/en/) with specified version on package.json.
+It is recommended for you to use a version manager like [`nvm`](https://github.com/nvm-sh/nvm).
+Then we need to install the package manager, we are using [`yarn`](https://yarnpkg.com/), we can do that by running `npm -i -g yarn` to make yarn available globally on your system.
+
+```bash
+# install the dependencies
+yarn
+# start the development server
+yarn dev 
 ```
 
-### Features
-- **Create Task**: Add a new task
-- **Complete Task**: Mark a task as completed
-- **Filter**: All, Active, Completed
-- **Clear Completed**: Remove all completed tasks
-- **Session User**: Display the user name
-- **Theme**: Light and Dark mode
-- **Local Persistense**: Save tasks in local storage
-- **Responsive**: Mobile and Desktop
-- **Deployment**: GithubPages at [https://ivanifj.github.io/todo-list/](https://ivanifj.github.io/todo-list/)
+### Usefull commands
 
-### Decision log
-- [Vite](https://vitejs.dev/): Fast and easy to use. No SEO requirements since it is a "private task list app"
-- Manual styling: Few components, no need for a UI framework like Material, Tailwind, Ant or similar
-- CSS-in-JS ( [styled-components](https://styled-components.com/) ) to style components and manage theme tokens
-- [Lucid Icons](https://lucide.dev/) for the svg icons ( tree-shakable )
-- [Zustand](https://github.com/pmndrs/zustand) for state management.
-- Used [unDraw](https://undraw.co/illustrations) for custom svg illustrations
+#### Running tests
+```bash
+yarn test
+yarn test:watch
+```
 
-### Work in progress
-- [x] Add logger middleware track state
-- [x] Persist state on localstorage
-- [x] Add unit tests ensure state evolution
-- [x] Add integration tests to ensure user interactions
-- [x] Add Edit Task feature
-- [x] Add resnposive layout
-- [x] Fix todo x task -> "To-Do List" is an app that allows users to manage tasks
-- [x] Add SideMenu to change theme and clear all tasks
-- [x] Create other theme variant
-- [x] Enhance assecibility support (keyboard friendly, aria-labels)
-- [x] Add custom linter rules
-- [ ] Add to docs: run, test, deploy, build, tooling
+#### Build and serve the app
+```bash
+yarn build
+yarn serve
+``` 
+
+#### Run Linter
+```bash 
+yarn lint
+yarn lint --fix
+``` 
+
+#### Integration with DevTools
+The app is integrated with Redux DevTools. You can [install the extension](https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) on your browser and see the state evolution with a time-travel debug.
+
+<img src="devtools.png" />
