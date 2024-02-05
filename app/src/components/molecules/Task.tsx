@@ -64,9 +64,16 @@ export const Task = memo(function Task({ value, onClick }: TaskProps) {
   const color = completed ? 'subtle' : 'base'
   const { open } = useModal()
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLOrSVGElement>) => {
+    console.log('event.key', event.key)
+    if (event.key === 'Enter' || event.key === ' ') {
+      onClick && onClick()
+    }
+  }
+
   return (
     <Container $checked={completed} role='listitem'>
-      <Checkbox onClick={onClick} $checked={completed} role="checkbox" aria-checked={completed} />
+      <Checkbox tabIndex={0} onClick={onClick} onKeyDown={handleKeyDown} $checked={completed} role="checkbox" aria-checked={completed} />
       <Content>
         <Name $color={color} $checked={completed} as="span" $variant='body'>{name}</Name>
         <Typography $color={color} $variant='caption2'>{formatDate(createdAt)}</Typography>

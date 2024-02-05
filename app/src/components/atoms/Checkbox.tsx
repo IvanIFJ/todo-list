@@ -14,6 +14,10 @@ export const Checkbox = styled(Check)<CheckboxProps>`
     padding: ${theme.spacing(0.25)};
     transition: all ease 0.2s;
     cursor: pointer;
+    &:focus {
+      outline: 2px solid ${theme.color.iteraction.focus};
+      color: ${theme.color.boder};
+    }
     &:hover {
       color: ${theme.color.iteraction.hover};
       border-color: ${theme.color.iteraction.hover};
