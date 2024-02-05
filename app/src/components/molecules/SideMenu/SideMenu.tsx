@@ -5,6 +5,7 @@ import { useTaskList } from '../../../state'
 import { stores } from '../../../state/createStore'
 import { Typography } from '../../atoms/Typography'
 import { IconButton } from '../IconButton'
+import { useChangeTheme } from '../../../styles'
 
 const Container = styled.div<{ $opened: boolean }>`
   position: absolute;
@@ -28,7 +29,7 @@ const Container = styled.div<{ $opened: boolean }>`
       width: 0;
     `}
 
-    &, * {
+    a {
       color: ${theme.color.text.inverse};
     }
 
@@ -70,9 +71,11 @@ const Backdrop = styled.div<{ $opened: boolean }>`
 export function SideMenu() {
   const { opened, close } = useSideMenu()
   const { clearTasks } = useTaskList()
+  const { changeTheme, current } = useChangeTheme()
 
-  const handleLogout = () => {
-    stores.forEach(resetFn => resetFn())
+  const handleClearData = () => {
+    // prevent theme changes
+    [...stores].filter(({name}) => name !== '@Theme').forEach(({ resetFn }) => resetFn())
   }
 
   return (
@@ -80,8 +83,15 @@ export function SideMenu() {
       <Backdrop $opened={opened} onClick={close} />
       <nav>
         <IconButton onClick={close} icon={X} $size="small" $inverse />
-        <Typography as="a" $variant='body' onClick={handleLogout}>Clear all data</Typography>
-        <Typography as="a" $variant='body' onClick={clearTasks}>Clear task list</Typography>
+
+        <Typography $color="subtle" $variant='caption2'>Manage data:</Typography>
+        <Typography as="a" $variant='body' onClick={handleClearData}>Clear all data</Typography>
+        <Typography as="a" $variant='body' onClick={clearTasks}>Reset tasks</Typography>
+        <br />
+        <Typography $color='subtle' $variant='caption2'>Change the theme:</Typography>
+        {current !== 'default' ? <Typography as="a" $variant='body' onClick={() => changeTheme('default')}>Default theme</Typography> : null}
+        {current !== 'dark' ? <Typography as="a" $variant='body' onClick={() => changeTheme('dark')}>Dark theme</Typography> : null}
+        {current !== 'olive' ? <Typography as="a" $variant='body' onClick={() => changeTheme('olive')}>Olive theme</Typography> : null}
       </nav>
     </Container>
   );

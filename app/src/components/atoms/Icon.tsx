@@ -1,6 +1,6 @@
 import { LucideIcon } from 'lucide-react'
 import { useTheme } from 'styled-components'
-import { Theme } from '../../styles/Theme'
+import { Theme } from '../../styles'
 
 type IconProps = {
   icon: LucideIcon

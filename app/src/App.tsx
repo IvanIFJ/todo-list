@@ -1,7 +1,7 @@
 import { Home } from './pages/Home'
 import { Welcome } from './pages/Welcome'
 import { useScreen } from './state'
-import { ThemeProvider } from './styles/Theme'
+import { ThemeProvider } from './styles'
 
 export function AppProviders({ children }: WithChildren) {
   return (

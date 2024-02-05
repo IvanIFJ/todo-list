@@ -14,7 +14,7 @@ const Container = styled(Button)`
     height: ${theme.spacing(7)};
     width: ${theme.spacing(7)};
     border-radius: ${theme.boderRadius.large};
-    box-shadow: 0px 8px 10px #1167e269;
+    box-shadow: 0px 8px 10px rgba(20, 20, 30, 0.4);
   `}
 `
 

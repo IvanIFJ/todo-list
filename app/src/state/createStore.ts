@@ -9,14 +9,18 @@ export type WithMiddlewares<Store> = StateCreator<
     Store
 >
 
-export const stores = new Set<() => void>();
+export const stores = new Set<{ name: string, resetFn: () => void}>();
 
 export const createStore = <Store>(store: WithMiddlewares<Store>, persistOpts: PersistOptions<Store>) => {
+  const name = persistOpts.name || store.name
   const createdStore = (import.meta.env.DEV) ?
-    create<Store>()(devtools(persist(store, persistOpts), { name: persistOpts.name })) :
+    create<Store>()(devtools(persist(store, persistOpts), { name })) :
     create<Store>()(persist(store, persistOpts))
   
-  stores.add(() => createdStore.setState(createdStore.getInitialState(), true))
+  stores.add({
+    name,
+    resetFn: () => createdStore.setState(createdStore.getInitialState(), true)
+  })
 
   return createdStore
 }

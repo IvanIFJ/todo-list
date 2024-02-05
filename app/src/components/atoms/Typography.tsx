@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Theme } from '../../styles/Theme'
+import { Theme } from '../../styles'
 
 type TypographyProps = {
   as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'a' | 'button'
