@@ -1,13 +1,13 @@
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
-import { Theme, baseTheme, darkTheme, oliveTheme } from '.'
+import { Theme, baseTheme, darkTheme, oliveTheme, monospaceTheme } from '.'
 import { createStore } from '../state/createStore'
 import { NormalizeStyles } from './NormalizeStyles'
 
-type ThemeVariant = 'olive' | 'default' | 'dark'
+const themeNames = [baseTheme, darkTheme, oliveTheme, monospaceTheme].map(({ name }) => name)
 
 type ChangeThemeStore = {
-  current: ThemeVariant
-  changeTheme: (theme: ThemeVariant) => void
+  current: typeof themeNames[number]
+  changeTheme: (theme: typeof themeNames[number]) => void
 }
 
 const getBrowserTheme = () => {
@@ -31,6 +31,7 @@ export function ThemeProvider({ children }: WithChildren) {
     olive: oliveTheme,
     default: baseTheme,
     dark: darkTheme,
+    monospace: monospaceTheme,
   }[current] as Theme
 
   return (

@@ -1,5 +1,5 @@
-export const baseTheme = {
-  name: 'base',
+const baseTheme = {
+  name: 'default',
   maxWidth: '650px',
   color: {
     iteraction: {
@@ -58,9 +58,7 @@ export const baseTheme = {
   spacing: (scale: number) => `${scale * 8}px`,
 } as const
 
-export type Theme = typeof baseTheme
-
-export const darkTheme = {
+const darkTheme = {
   name: 'dark',
   maxWidth: '650px',
   color: {
@@ -118,10 +116,10 @@ export const darkTheme = {
     },
   },
   spacing: (scale: number) => `${scale * 8}px`,
-}
+} as const
 
 
-export const oliveTheme = {
+const oliveTheme = {
   name: 'olive',
   maxWidth: '650px',
   color: {
@@ -179,4 +177,69 @@ export const oliveTheme = {
     },
   },
   spacing: (scale: number) => `${scale * 8}px`,
-}
+} as const
+
+const monospaceTheme = {
+  name: 'monospace',
+  maxWidth: '650px',
+  color: {
+    iteraction: {
+      base: '#63dd9e',
+      active: '#31654a',
+      hover: '#9af5f2',
+      focus: 'rgb(86 255 242 / 45%)',
+    },
+    disabled:{
+      base: '#404040',
+      active: '#404040',
+      hover: '#404040',
+    },
+    link: {
+      base: '#bababa',
+      active: '#989898',
+      hover: '#cbcbcb',
+      focus: 'rgb(255 255 255 / 25%)',
+    },
+    text: { 
+      base: '#dbdee3',
+      subtle: '#acafbc',
+      accent: '#4ec889',
+      inverse: '#252b36',
+    },
+    surface: {
+      base: '#1e1e1e',
+      subtle: '#272727',
+      accent: '#373737',
+      inverse: '#fff',
+      backdrop: 'rgba(0, 0, 0, 0.3)',
+    },
+    border: '#30408',
+  },
+  borderRadius: {
+    base: '2px',
+    small: '0px',
+    large: '0px',
+    half: '0',
+  },
+  font: {
+    family: 'monospace',
+    weight: {
+      light: 300,
+      regular: 300,
+      bold: 400,
+    },
+    size: {
+      heading: '20px',
+      subheading: '16px',
+      body: '12px',
+      caption: '10px',
+      caption2: '9px',
+    },
+  },
+  spacing: (scale: number) => `${scale * 8.5}px`,
+} as const
+
+type Theme = typeof baseTheme
+
+export { baseTheme, darkTheme, oliveTheme, monospaceTheme }
+export type { Theme }

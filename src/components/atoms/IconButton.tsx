@@ -1,6 +1,7 @@
 import { LucideIcon } from 'lucide-react'
 import styled from 'styled-components'
 import { Icon } from '../atoms/Icon'
+import { LegacyRef, forwardRef } from 'react'
 
 type ButtonProps = Pick<IconButtonProps, '$size' | '$inverse'>
 
@@ -62,10 +63,10 @@ type IconButtonProps = {
   $inverse?: boolean
 } & React.HTMLAttributes<HTMLButtonElement>
 
-export function IconButton({ icon, $size = 'medium', ...props }: IconButtonProps) {
+export const IconButton = forwardRef( function IconButton({ icon, $size = 'medium', ...props }: IconButtonProps, ref?: LegacyRef<HTMLButtonElement>) {
   return (
-    <StyledButton  {...{ ...props, $size }}>
+    <StyledButton  ref={ref} {...{ ...props, $size }}>
       {<Icon icon={icon} size={$size} />}
     </StyledButton>
   )
-}
+})

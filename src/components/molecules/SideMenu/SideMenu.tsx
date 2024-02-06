@@ -5,9 +5,12 @@ import { useOnKeyDown } from '../../../hooks/useOnKeyDown'
 import { stores } from '../../../state/createStore'
 import { useChangeTheme } from '../../../styles'
 import { Typography } from '../../atoms/Typography'
-import { useEffect, useRef } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 import { IconButton } from '../../atoms/IconButton'
 import { useTaskListActions } from '../../../state'
+import { monospaceTheme, baseTheme, darkTheme, oliveTheme } from '../../../styles'
+
+const THEMES = [baseTheme, darkTheme, oliveTheme, monospaceTheme]
 
 const Container = styled.div<{ $opened: boolean }>`
   position: absolute;
@@ -35,7 +38,7 @@ const Container = styled.div<{ $opened: boolean }>`
     height: 100%;
     transition: right 0.3s ease-out;
     ${({ theme, $opened }) => `
-    width: ${theme.spacing(26)};
+    width: ${theme.spacing(32)};
     gap: ${theme.spacing(2)};
     padding: ${theme.spacing(6)} ${theme.spacing(6)} ${theme.spacing(6)} ${theme.spacing(4)};
     background-color: ${theme.color.surface.inverse};
@@ -64,19 +67,20 @@ const Backdrop = styled.div<{ $opened: boolean }>`
   `}
 `
 
-function CloseSiteMenuButton() {
+const CloseSiteMenuButton = 
+forwardRef(function CloseSiteMenuButton(_, ref: React.Ref<HTMLButtonElement>)  {
   const { close } = useSideMenu()
 
   useOnKeyDown((event: KeyboardEvent) => { event.key === 'Escape' && close() })
 
-  return <IconButton aria-label='Close' onClick={close} icon={X} $size="small" $inverse />
-}
+  return <IconButton ref={ref} aria-label='Close' onClick={close} icon={X} $size="small" $inverse />
+})
 
 export function SideMenu() {
   const { opened, close } = useSideMenu()
   const { clearTasks } = useTaskListActions()
   const { changeTheme, current } = useChangeTheme()
-  const ref = useRef<HTMLAnchorElement>(null)
+  const autoFocusRef = useRef<HTMLButtonElement>(null)
 
   const handleClearData = () => {
     // prevent theme changes
@@ -85,7 +89,7 @@ export function SideMenu() {
 
   useEffect(() => {
     // wait for the animation to finish
-    const timeout = opened ? setTimeout(() => ref.current?.focus(), 500) : undefined
+    const timeout = opened ? setTimeout(() => autoFocusRef.current?.focus(), 500) : undefined
 
     return () => clearTimeout(timeout)
   }, [opened])
@@ -95,16 +99,27 @@ export function SideMenu() {
       <Backdrop $opened={opened} onClick={close} />
       <nav>
         {opened && <>
-          <CloseSiteMenuButton />
+          <CloseSiteMenuButton ref={autoFocusRef} />
 
           <Typography $color="subtle" $variant='caption2'>Manage data:</Typography>
-          <Typography ref={ref} as="a" href="#!" $variant='body' onClick={clearTasks}>Reset tasks</Typography>
+          <Typography as="a" href="#!" $variant='body' onClick={clearTasks}>Reset tasks</Typography>
           <Typography as="a" href="#!" $variant='body' onClick={handleClearData}>Clear all data</Typography>
           <br />
           <Typography $color='subtle' $variant='caption2'>Change the theme:</Typography>
-          {current !== 'default' ? <Typography as="a" href="#!" $variant='body' onClick={() => changeTheme('default')}>Default theme</Typography> : null}
-          {current !== 'dark' ? <Typography as="a" href="#!" $variant='body' onClick={() => changeTheme('dark')}>Dark theme</Typography> : null}
-          {current !== 'olive' ? <Typography as="a" href="#!" $variant='body' onClick={() => changeTheme('olive')}>Olive theme</Typography> : null}
+          {THEMES.map(({ name }) => (
+            current !== name ?
+              <Typography
+                as="a"
+                href="#!"
+                $variant='body'
+                key={name}
+                onClick={() => changeTheme(name)}
+                style={{ textTransform: 'capitalize' }}
+              >
+                {name} theme
+              </Typography> :
+              null
+          ))}
         </>}
       </nav>
     </Container>
