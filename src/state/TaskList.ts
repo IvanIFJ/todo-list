@@ -1,3 +1,4 @@
+import { useShallow } from 'zustand/react/shallow'
 import { TaskEntity } from '../entities'
 import { generateId } from '../utils/generateId'
 import { createStore } from './createStore'
@@ -22,7 +23,7 @@ type TaskListStore = State & Actions
 
 const storeName = '@TaskList'
 
-export const useTaskList = createStore<TaskListStore>((set) => ({
+const useTaskList = createStore<TaskListStore>((set) => ({
   ...INITIAL_STATE,
   createTask: (name) => {
     set((state) => {
@@ -65,20 +66,12 @@ export const useTaskList = createStore<TaskListStore>((set) => ({
   }
 }), { name: storeName })
 
-const createTaskSelector = (kind: 'completed' | 'pending') => (state: TaskListStore) => ({
-  tasks: {
-    'completed': state.tasks.
-      filter(({ completed }) =>  completed).
-      sort((a, b) => (b.completedAt || 0) - (a.completedAt || 0)),
-    'pending': state.tasks.
-      filter(({ completed }) =>  !completed).
-      sort((a, b) => b.createdAt - a.createdAt)
-  }[kind],
-})
 
-export const taskListSelector = {
-  completedTasks: createTaskSelector('completed'),
-  pendingTasks: createTaskSelector('pending'),
+const selectors = {
+  pendingTasks: (store: TaskListStore ) => store.tasks.filter(({ completed }) =>  !completed).
+    sort((a, b) => b.createdAt - a.createdAt),
+  completedTasks: (store: TaskListStore ) => store.tasks.filter(({ completed }) => completed).
+    sort((a, b) => (b.completedAt || 0) - (a.completedAt || 0)),
   meta: ({ tasks }: TaskListStore) => ({
     total: tasks.length,
     completed: tasks.filter(({ completed }) => completed).length
@@ -86,3 +79,8 @@ export const taskListSelector = {
   actions: ({ clearCompleted, clearTasks, createTask, toggleTask, editTask }: TaskListStore) =>
     ({ clearCompleted, clearTasks, createTask, toggleTask, editTask })
 }
+
+export const useTaskListActions = () => useTaskList(useShallow(selectors.actions))
+export const useTaskListMeta = () => useTaskList(useShallow(selectors.meta))
+export const useCompletedTasks = () => useTaskList(useShallow(selectors.completedTasks))
+export const usePendingTasks = () => useTaskList(useShallow(selectors.pendingTasks))

@@ -2,7 +2,7 @@ import { Pencil } from 'lucide-react/'
 import { memo, useCallback } from 'react'
 import styled from 'styled-components'
 import { TaskEntity } from '../../entities'
-import { useTaskList } from '../../state'
+import { useTaskListActions } from '../../state'
 import { formatDate } from '../../utils/formatDate'
 import { Checkbox } from '../atoms/Checkbox'
 import { IconButton } from '../atoms/IconButton'
@@ -60,10 +60,10 @@ const Content = styled.div`
 `
 
 function TaskCheckbox({ id, completed  }: {id: string, completed: boolean}) {
-  const toggle = useTaskList(({ toggleTask }) => toggleTask)
+  const { toggleTask } = useTaskListActions()
   const handleToggle = useCallback(() => {
-    toggle(id)
-  }, [id, toggle])
+    toggleTask(id)
+  }, [id, toggleTask])
 
   const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLOrSVGElement>) => {
     if (event.key === 'Enter' || event.key === ' ') {

@@ -2,12 +2,12 @@ import { X } from 'lucide-react'
 import styled from 'styled-components'
 import { useSideMenu } from '.'
 import { useOnKeyDown } from '../../../hooks/useOnKeyDown'
-import { useTaskList } from '../../../state'
 import { stores } from '../../../state/createStore'
 import { useChangeTheme } from '../../../styles'
 import { Typography } from '../../atoms/Typography'
 import { useEffect, useRef } from 'react'
 import { IconButton } from '../../atoms/IconButton'
+import { useTaskListActions } from '../../../state'
 
 const Container = styled.div<{ $opened: boolean }>`
   position: absolute;
@@ -74,7 +74,7 @@ function CloseSiteMenuButton() {
 
 export function SideMenu() {
   const { opened, close } = useSideMenu()
-  const { clearTasks } = useTaskList()
+  const { clearTasks } = useTaskListActions()
   const { changeTheme, current } = useChangeTheme()
   const ref = useRef<HTMLAnchorElement>(null)
 

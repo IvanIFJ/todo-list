@@ -1,10 +1,8 @@
 import styled from 'styled-components'
-import { shallow } from 'zustand/shallow'
-import { useStoreWithEqualityFn } from 'zustand/traditional'
-import { taskListSelector, useTaskList } from '../../../state'
+import { usePendingTasks, useTaskListMeta } from '../../../state'
+import { Task } from '../../molecules/Task'
 import { CompledTaskList } from './CompletedTaskList'
 import { EmptyTaskList } from './EmptyTaskList'
-import { Task } from '../../molecules/Task'
 
 
 const Container = styled.div`
@@ -23,7 +21,7 @@ const Container = styled.div`
 `
 
 function List() {
-  const { tasks } = useStoreWithEqualityFn(useTaskList, taskListSelector.pendingTasks, shallow)
+  const tasks = usePendingTasks()
  
   return (<>
     {tasks.map((task) => (
@@ -36,7 +34,7 @@ function List() {
 }
 
 export function TaskList() {
-  const { total } = useTaskList(taskListSelector.meta)
+  const { total } = useTaskListMeta()
 
   if (total === 0) return <Container><EmptyTaskList /></Container>
 
