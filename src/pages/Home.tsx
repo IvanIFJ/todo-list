@@ -5,10 +5,10 @@ import { Modal, useModal } from '../components/molecules/Modal'
 import { TaskForm } from '../components/molecules/TaskForm'
 import { TaskList } from '../components/organism/TaskList'
 import { BaseLayout } from '../components/templates/BaseLayout'
-import { taskListSelector, useTaskList, useUser } from '../state'
+import { useTaskListMeta, useUser } from '../state'
 
 function TaskCounter() {
-  const { completed, total } = useTaskList(taskListSelector.meta)
+  const { completed, total } = useTaskListMeta()
   const emptyList = total === 0 
   const title = emptyList ? 'No tasks' : `All tasks ( ${total - completed} / ${total} )`
 

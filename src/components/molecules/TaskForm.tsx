@@ -2,10 +2,10 @@ import { PlusCircle, Save } from 'lucide-react'
 import { Button } from '../atoms/Button'
 import { Input } from '../atoms/Input'
 import { useEffect, useRef, useState } from 'react'
-import { taskListSelector, useTaskList } from '../../state'
 import styled from 'styled-components'
 import { useModal } from '../molecules/Modal'
 import { useOnKeyDown } from '../../hooks/useOnKeyDown'
+import { useTaskListActions } from '../../state'
 
 const Form = styled.form`
   display: flex;
@@ -16,7 +16,7 @@ const Form = styled.form`
 export function TaskForm() {
   const { payload, close } = useModal()
   const [name, setName] = useState(payload?.name || '')
-  const { createTask, editTask } = useTaskList(taskListSelector.actions)
+  const { createTask, editTask } = useTaskListActions()
   const ref = useRef<HTMLInputElement>(null)
   const label = payload ? 'Save' : 'Create task'
   const Icon = payload ? Save : PlusCircle
