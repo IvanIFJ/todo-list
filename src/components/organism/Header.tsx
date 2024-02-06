@@ -10,13 +10,17 @@ const StyledHeader = styled.header`
   justify-content: space-between;
 `
 
-export function Header() {
+function SettingsButton() {
   const { open } = useSideMenu()
 
+  return <IconButton aria-label='Open settings' onClick={open} icon={Settings} />
+}
+
+export function Header() {
   return (
     <StyledHeader>
       <Typography as="h1" $variant='subheading' $color='subtle'>Atomic To-Do List</Typography>
-      <IconButton aria-label='Open settings' onClick={open} icon={Settings} />
+      <SettingsButton />
     </StyledHeader>
   )
 }
