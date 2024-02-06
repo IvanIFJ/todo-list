@@ -7,7 +7,7 @@ export const Container = styled.div<{ $opened?: boolean }>`
   ${({ theme, $opened }) => `
     display: ${$opened ? 'flex' : 'none'};
     background-color: ${theme.color.surface.subtle};
-    border-radius: ${theme.spacing(6)};
+    border-radius: ${theme.borderRadius.large};
     padding: ${theme.spacing(6)} ${theme.spacing(3)};
     background-color: ${theme.color.surface.base};
   `}

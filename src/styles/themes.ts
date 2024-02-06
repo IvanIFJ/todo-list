@@ -37,7 +37,8 @@ export const baseTheme = {
   borderRadius: {
     base: '8px',
     small: '4px',
-    large: '50%', 
+    large: '48px',
+    half: '50%',
   },
   font: {
     family: 'Nunito, sans-serif',
@@ -98,7 +99,8 @@ export const darkTheme = {
   borderRadius: {
     base: '8px',
     small: '4px',
-    large: '50%', 
+    large: '48px',
+    half: '50%',
   },
   font: {
     family: 'Nunito, sans-serif',
@@ -117,6 +119,7 @@ export const darkTheme = {
   },
   spacing: (scale: number) => `${scale * 8}px`,
 }
+
 
 export const oliveTheme = {
   name: 'olive',
@@ -157,7 +160,8 @@ export const oliveTheme = {
   borderRadius: {
     base: '8px',
     small: '4px',
-    large: '50%', 
+    large: '48px',
+    half: '50%',
   },
   font: {
     family: 'Nunito, sans-serif',

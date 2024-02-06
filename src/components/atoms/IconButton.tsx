@@ -14,7 +14,7 @@ const StyledButton = styled.button<ButtonProps>`
   transition: color ease 0.2s, background-color ease 0.2s;
   outline: 2px solid transparent;
   ${({ theme, $size = 'medium', $inverse }) => `
-    border-radius: ${theme.borderRadius.large};
+    border-radius: ${theme.borderRadius.half};
     &:focus { outline: 2px solid ${theme.color.iteraction.focus} }
     &:active { outline: 2px solid transparent; }
     ${$inverse ? `

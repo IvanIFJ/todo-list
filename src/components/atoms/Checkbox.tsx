@@ -10,7 +10,7 @@ export const Checkbox = styled(Check)<CheckboxProps>`
     width: ${theme.spacing(3)};
     height: ${theme.spacing(3)};
     border: 2px solid ${theme.color.iteraction.base};
-    border-radius: ${theme.borderRadius.large};
+    border-radius: ${theme.borderRadius.half};
     padding: ${theme.spacing(0.25)};
     transition: all ease 0.2s;
     cursor: pointer;

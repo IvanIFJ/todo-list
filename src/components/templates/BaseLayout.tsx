@@ -29,12 +29,12 @@ const Container = styled.div`
   ${({ theme }) => `
     max-width: ${theme.maxWidth};
     background-color: ${theme.color.surface.subtle};
-    border-radius: ${theme.spacing(6)};
+    border-radius: ${theme.borderRadius.large};
     padding: ${theme.spacing(5)} ${theme.spacing(3)};
     
     @media (max-width: ${theme.maxWidth}) {
       padding: ${theme.spacing(4)} ${theme.spacing(3)};
-      border-radius: 0 0 ${theme.spacing(6)} ${theme.spacing(6)};
+      border-radius: 0 0 ${theme.borderRadius.large} ${theme.borderRadius.large};
       height: 100%;
     };
   `}

@@ -23,7 +23,7 @@ export const Button = styled.button.attrs<ButtonProps>(({ $disabled }) => ({ dis
     font-weight: ${theme.font.weight.regular};
     height: ${theme.spacing(6)};
     padding: 0 ${theme.spacing(3)};
-    border-radius: ${theme.spacing(4)};
+    border-radius: ${theme.borderRadius.large};
     color: ${theme.color.text.inverse};
     background-color: ${theme.color.iteraction.base};
     &:hover { background-color: ${theme.color.iteraction.hover} }
