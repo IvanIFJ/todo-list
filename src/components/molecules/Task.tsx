@@ -1,16 +1,16 @@
+import { Pencil } from 'lucide-react/'
+import { memo, useCallback } from 'react'
 import styled from 'styled-components'
 import { TaskEntity } from '../../entities'
-import { Checkbox } from '../atoms/Checkbox'
-import { Typography } from '../atoms/Typography'
+import { useTaskList } from '../../state'
 import { formatDate } from '../../utils/formatDate'
-import { memo } from 'react'
-import { Pencil } from 'lucide-react/'
-import { useModal } from './Modal'
+import { Checkbox } from '../atoms/Checkbox'
 import { IconButton } from '../atoms/IconButton'
+import { Typography } from '../atoms/Typography'
+import { useModal } from './Modal'
 
 type TaskProps = {
   value: TaskEntity
-  onClick?: () => void
 }
 
 const Container = styled.div<{ $checked?: boolean }>`
@@ -59,20 +59,29 @@ const Content = styled.div`
   flex: 1;
 `
 
-export const Task = memo(function Task({ value, onClick }: TaskProps) {
+function TaskCheckbox({ id, completed  }: {id: string, completed: boolean}) {
+  const toggle = useTaskList(({ toggleTask }) => toggleTask)
+  const handleToggle = useCallback(() => {
+    toggle(id)
+  }, [id, toggle])
+
+  const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLOrSVGElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      handleToggle()
+    }
+  }, [handleToggle])
+
+  return <Checkbox tabIndex={0} onClick={handleToggle} onKeyDown={handleKeyDown} $checked={completed} role="checkbox" aria-checked={completed} />
+}
+
+export const Task = memo(function Task({ value }: TaskProps) {
   const { completed, createdAt, name, id } = value
   const color = completed ? 'subtle' : 'base'
   const { open } = useModal()
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLOrSVGElement>) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      onClick && onClick()
-    }
-  }
-
   return (
     <Container $checked={completed} role='listitem'>
-      <Checkbox tabIndex={0} onClick={onClick} onKeyDown={handleKeyDown} $checked={completed} role="checkbox" aria-checked={completed} />
+      <TaskCheckbox completed={completed} id={id} />
       <Content>
         <Name $color={color} $checked={completed} as="span" $variant='body'>{name}</Name>
         <Typography $color={color} $variant='caption2'>{formatDate(createdAt)}</Typography>

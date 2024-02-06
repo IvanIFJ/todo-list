@@ -24,13 +24,11 @@ const Container = styled.div`
 
 function List() {
   const { tasks } = useStoreWithEqualityFn(useTaskList, taskListSelector.pendingTasks, shallow)
-  const { toggleTask } = useTaskList(taskListSelector.actions)
  
   return (<>
     {tasks.map((task) => (
       <Task
         key={task.id}
-        onClick={() => toggleTask(task.id)}
         value={task}
       />
     ))}
