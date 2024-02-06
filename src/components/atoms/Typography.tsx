@@ -38,7 +38,7 @@ export const Typography = styled.p<TypographyProps>`
     ${(as === 'button') ? `
       padding: ${theme.spacing(1)} ${theme.spacing(2)};
       display: inline-block;
-      border-radius: ${theme.boderRadius.small};
+      border-radius: ${theme.borderRadius.small};
       outline: 2px solid transparent;
       &:focus { outline: 2px solid ${theme.color.iteraction.focus}; }
     ` : ''}

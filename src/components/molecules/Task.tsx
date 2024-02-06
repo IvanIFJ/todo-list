@@ -19,14 +19,14 @@ const Container = styled.div<{ $checked?: boolean }>`
   transition: all 0.2s ease;
   width: 100%;
   ${({ theme }) => `
-    box-shadow: 0px 2px 4px ${theme.color.boder};
+    box-shadow: 0px 2px 4px ${theme.color.border};
     background-color: ${theme.color.surface.base};
     gap: ${theme.spacing(2)};
     padding: ${theme.spacing(2)};
-    border-radius: ${theme.boderRadius.base};
+    border-radius: ${theme.borderRadius.base};
     margin-bottom: ${theme.spacing(1)};
     &:not(:last-child) {
-      border-bottom: 1px solid ${theme.color.boder};
+      border-bottom: 1px solid ${theme.color.border};
     }
   `};
   ${({ theme, $checked }) => `
@@ -36,7 +36,7 @@ const Container = styled.div<{ $checked?: boolean }>`
       background-color: ${theme.color.surface.subtle};
     ` : `
       &:hover {
-        box-shadow: 0px 8px 10px ${theme.color.boder};
+        box-shadow: 0px 8px 10px ${theme.color.border};
         transform: translateY(-2px);
       }
     `}

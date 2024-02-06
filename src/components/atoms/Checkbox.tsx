@@ -10,13 +10,13 @@ export const Checkbox = styled(Check)<CheckboxProps>`
     width: ${theme.spacing(3)};
     height: ${theme.spacing(3)};
     border: 2px solid ${theme.color.iteraction.base};
-    border-radius: ${theme.boderRadius.large};
+    border-radius: ${theme.borderRadius.large};
     padding: ${theme.spacing(0.25)};
     transition: all ease 0.2s;
     cursor: pointer;
     &:focus {
       outline: 2px solid ${theme.color.iteraction.focus};
-      color: ${theme.color.boder};
+      color: ${theme.color.border};
     }
     &:hover {
       color: ${theme.color.iteraction.hover};
@@ -24,8 +24,8 @@ export const Checkbox = styled(Check)<CheckboxProps>`
     }
     ${$checked ? `
       color: ${theme.color.iteraction.base};
-      border-color: ${theme.color.boder};
-      background-color: ${theme.color.boder};
+      border-color: ${theme.color.border};
+      background-color: ${theme.color.border};
     ` : `
       color: ${theme.color.surface.base};
     `}

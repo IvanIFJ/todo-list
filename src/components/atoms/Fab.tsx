@@ -13,7 +13,7 @@ const StyledButton = styled(Button)`
     right: ${theme.spacing(4)};
     height: ${theme.spacing(7)};
     width: ${theme.spacing(7)};
-    border-radius: ${theme.boderRadius.large};
+    border-radius: ${theme.borderRadius.large};
     box-shadow: 0px 8px 10px rgba(20, 20, 30, 0.4);
   `}
 `

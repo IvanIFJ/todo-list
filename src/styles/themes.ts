@@ -32,9 +32,9 @@ export const baseTheme = {
       inverse: '#0D2052',
       backdrop: 'rgba(13, 32, 83, 0.3)',
     },
-    boder: '#E9EFFD',
+    border: '#E9EFFD',
   },
-  boderRadius: {
+  borderRadius: {
     base: '8px',
     small: '4px',
     large: '50%', 
@@ -93,9 +93,9 @@ export const darkTheme = {
       inverse: '#fff',
       backdrop: 'rgba(0, 0, 0, 0.3)',
     },
-    boder: '#30408',
+    border: '#30408',
   },
-  boderRadius: {
+  borderRadius: {
     base: '8px',
     small: '4px',
     large: '50%', 
@@ -152,9 +152,9 @@ export const oliveTheme = {
       inverse: '#252b36',
       backdrop: 'rgba(13, 32, 83, 0.3)',
     },
-    boder: '#E9EFFD',
+    border: '#E9EFFD',
   },
-  boderRadius: {
+  borderRadius: {
     base: '8px',
     small: '4px',
     large: '50%', 
