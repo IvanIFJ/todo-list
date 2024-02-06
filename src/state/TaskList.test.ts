@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import { useTaskList } from '.'
+import { useCompletedTasks, usePendingTasks, useTaskListActions } from '.'
 
 describe('TaskListStore', () => {
   const createTasks = (tasks: string[], taskCreator: (name: string) => void) => {
@@ -8,71 +8,89 @@ describe('TaskListStore', () => {
   }
 
   it('should initialize with no tasks', () => {
-    const { result } = renderHook(() => useTaskList())
+    const { result: pending } = renderHook(() => usePendingTasks())
+    const { result: completed } = renderHook(() => useCompletedTasks())
 
-    expect(result.current.tasks).toEqual([])
+    expect(pending.current).toEqual([])
+    expect(completed.current).toEqual([])
   })
 
   it('should be able to add new tasks on the list', () => {
-    const { result } = renderHook(() => useTaskList())
+    const { result: { current: actions } } = renderHook(() => useTaskListActions())
     const tasks = ['Task 1', 'Task 2', 'Task 3']
     
-    createTasks(tasks, result.current.createTask)
-    const createdTasks = result.current.tasks
+    createTasks(tasks, actions.createTask)
 
-    expect(createdTasks.map(({ name }) => name)).toEqual(tasks)
-    expect(createdTasks.map(({ completed }) => completed)).toEqual([false, false, false])
+    const { result: { current: pendingTasks } } = renderHook(() => usePendingTasks())
+    const { result: { current: completedTasks } } = renderHook(() => useCompletedTasks())
+
+    expect(pendingTasks.every(({ name }) => tasks.includes(name))).toBeTruthy()
+    expect(completedTasks).toEqual([])
   })
 
   it('should be able to toggle a task', () => {
-    const { result } = renderHook(() => useTaskList())
-    const tasks = ['Task 1', 'Task 2', 'Task 3']
+    const { result: { current: actions } } = renderHook(() => useTaskListActions())
+    const rawTasks = ['Task 1', 'Task 2', 'Task 3']
     
-    createTasks(tasks, result.current.createTask)
-    const [task1, task2] = result.current.tasks
+    createTasks(rawTasks, actions.createTask)
 
-    act(() => result.current.toggleTask(task1.id))
-    act(() => result.current.toggleTask(task2.id))
+    const { result: { current: pendingTasks } } = renderHook(() => usePendingTasks())
+    const [task1, task2] = pendingTasks
     
-    expect(result.current.tasks.map(({ completed }) => completed)).toEqual([true, true, false])
+    act(() => actions.toggleTask(task1.id))
+    act(() => actions.toggleTask(task2.id))
     
-    act(() => result.current.toggleTask(task1.id))
-    expect(result.current.tasks.map(({ completed }) => completed)).toEqual([false, true, false])
+    const { result: { current: completedTasks } } = renderHook(() => useCompletedTasks())
+    
+    expect(completedTasks.map(({ name }) => name)).toEqual([task2.name, task1.name])
   })
 
   it('should be able to clear all tasks', () => {
-    const { result } = renderHook(() => useTaskList())
-    const tasks = ['Task 1', 'Task 2', 'Task 3']
+    const { result: { current: actions } } = renderHook(() => useTaskListActions())
     
-    createTasks(tasks, result.current.createTask)
-    expect(result.current.tasks).toHaveLength(3)
-    act(() => result.current.clearTasks())
-    expect(result.current.tasks).toEqual([])
+    const tasks = ['Task 1', 'Task 2', 'Task 3']
+
+    createTasks(tasks, actions.createTask)
+    act(() => actions.clearTasks())
+    
+    const { result: { current: pendingTasks } } = renderHook(() => usePendingTasks())
+    const { result: { current: completedTasks } } = renderHook(() => useCompletedTasks())
+
+    act(() => actions.clearTasks())
+    expect(completedTasks).toEqual([])
+    expect(pendingTasks).toEqual([])
   })
 
   it('should be able to clear completed tasks', () => {
-    const { result } = renderHook(() => useTaskList())
+    const { result: { current: actions } } = renderHook(() => useTaskListActions())
     const tasks = ['Task 1', 'Task 2', 'Task 3']
     
-    createTasks(tasks, result.current.createTask)
-    const [task1, task2] = result.current.tasks
+    createTasks(tasks, actions.createTask)
+    const { result: { current: pendingTasks } } = renderHook(() => usePendingTasks())
+    const [task1, task2] = pendingTasks
 
-    act(() => result.current.toggleTask(task1.id))
-    act(() => result.current.toggleTask(task2.id))
-    expect(result.current.tasks).toHaveLength(3)
-    act(() => result.current.clearCompleted())
-    expect(result.current.tasks).toHaveLength(1)
-    expect(result.current.tasks[0].name).toBe('Task 3')
+    act(() => actions.toggleTask(task1.id))
+    act(() => actions.toggleTask(task2.id))
+
+    const { result: { current: completedTasks } } = renderHook(() => useCompletedTasks())
+
+    expect(completedTasks).toHaveLength(2)
+    act(() => actions.clearCompleted())
+
+    const { result: { current: completedClear } } = renderHook(() => useCompletedTasks())
+
+    expect(completedClear).toEqual([])
   })
 
   it('should be able to edit a task', () => {
-    const { result } = renderHook(() => useTaskList())
-    const tasks = ['Task 1', 'Task 2', 'Task 3']
-    
-    createTasks(tasks, result.current.createTask)
-    const [task1] = result.current.tasks
+    const { result: { current: actions } } = renderHook(() => useTaskListActions())
 
-    act(() => result.current.editTask(task1.id, 'Task 1 edited'))
-    expect(result.current.tasks[0].name).toBe('Task 1 edited')
+    createTasks(['My task'], actions.createTask)
+    const { result: { current: pendingTasks } } = renderHook(() => usePendingTasks())
+    
+    act(() => actions.editTask(pendingTasks[0].id, 'My edited task'))
+    const { result: { current: pendingEdited } } = renderHook(() => usePendingTasks())
+
+    expect(pendingEdited[0].name).toBe('My edited task')
   })
 })
