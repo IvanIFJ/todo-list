@@ -16,7 +16,7 @@ export function App() {
 
   const Screen = {
     'auth': Welcome,
-    'taskList': Home
+    'taskList': Home,
   }[current]
 
   return (

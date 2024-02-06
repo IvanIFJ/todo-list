@@ -15,5 +15,5 @@ export const useSideMenu = createStore<SideMenuStore>((set) => ({
   },
   close: () => {
     set(() => ({ opened: false }), false, { type: `${storeName}/close` })
-  }
+  },
 }), { name: storeName })

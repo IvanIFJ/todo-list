@@ -20,5 +20,5 @@ export const useUser = createStore<UserStore>((set) => ({
   ...INITIAL_STATE,
   setUser: (value) => {
     set(() => ({ name: value }), false, { type: `${storeName}/setUser` })
-  }
+  },
 }), { name: storeName })

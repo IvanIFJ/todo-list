@@ -372,6 +372,9 @@ module.exports = {
     'indent': ['error', 2],
     //https://eslint.org/docs/latest/rules/max-len#rule-details
     // Enforce a maximum line length
-    'max-len': ['error', 100, { 'ignoreUrls': true, 'ignoreStrings': true, 'ignoreTemplateLiterals': true }]
+    'max-len': ['error', 100, { 'ignoreUrls': true, 'ignoreStrings': true, 'ignoreTemplateLiterals': true }],
+    // https://eslint.org/docs/latest/rules/comma-dangle
+    // Enforce trailing commas
+    'comma-dangle': ['error', 'always-multiline'],
   }
 }

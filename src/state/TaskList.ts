@@ -31,7 +31,7 @@ const useTaskList = createStore<TaskListStore>((set) => ({
         id: generateId(),
         name,
         completed: false,
-        createdAt: new Date().getTime()
+        createdAt: new Date().getTime(),
       }
 
       return { tasks: [...state.tasks, task] }
@@ -61,9 +61,9 @@ const useTaskList = createStore<TaskListStore>((set) => ({
   },
   clearCompleted: () => {
     set(({ tasks }) => ({
-      tasks: tasks.filter((task) => !task.completed)
+      tasks: tasks.filter((task) => !task.completed),
     }), false, { type: `${storeName}/clearCompleted` })
-  }
+  },
 }), { name: storeName })
 
 
@@ -74,10 +74,10 @@ const selectors = {
     sort((a, b) => (b.completedAt || 0) - (a.completedAt || 0)),
   meta: ({ tasks }: TaskListStore) => ({
     total: tasks.length,
-    completed: tasks.filter(({ completed }) => completed).length
+    completed: tasks.filter(({ completed }) => completed).length,
   }),
   actions: ({ clearCompleted, clearTasks, createTask, toggleTask, editTask }: TaskListStore) =>
-    ({ clearCompleted, clearTasks, createTask, toggleTask, editTask })
+    ({ clearCompleted, clearTasks, createTask, toggleTask, editTask }),
 }
 
 export const useTaskListActions = () => useTaskList(useShallow(selectors.actions))

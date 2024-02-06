@@ -46,7 +46,7 @@ const StyledButton = styled.button<ButtonProps>`
     medium: `
         height: ${theme.spacing(6)};
         width: ${theme.spacing(6)};
-      `
+      `,
   }[$size]}
   `}
 `

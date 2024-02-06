@@ -13,7 +13,7 @@ export const stores = new Set<{ name: string, resetFn:() => void}>()
 
 export const createStore = <Store>(
   store: WithMiddlewares<Store>,
-  persistOpts: PersistOptions<Store>
+  persistOpts: PersistOptions<Store>,
 ) => {
   const name = persistOpts.name || store.name
   const createdStore = (import.meta.env.DEV) ?
@@ -22,7 +22,7 @@ export const createStore = <Store>(
   
   stores.add({
     name,
-    resetFn: () => createdStore.setState(createdStore.getInitialState(), true)
+    resetFn: () => createdStore.setState(createdStore.getInitialState(), true),
   })
 
   return createdStore
