@@ -5,7 +5,7 @@ import { Theme } from '../../styles'
 type IconProps = {
   icon: LucideIcon
   color?: keyof Theme['color']['text']
-  size?: 'small' | 'medium'
+  size?: 'small' | 'medium' | 'large'
 }
 
 export function Icon({ icon: Icon, color = 'base', size = 'medium' }: IconProps) {
@@ -13,7 +13,8 @@ export function Icon({ icon: Icon, color = 'base', size = 'medium' }: IconProps)
   const colorHex = theme.color.text[color]
   const actualSize = {
     small: 16,
-    medium: 24,
+    medium: 20,
+    large: 24,
   }[size]
 
   return <Icon size={actualSize} color={colorHex} />

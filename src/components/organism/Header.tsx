@@ -8,12 +8,13 @@ const StyledHeader = styled.header`
   display: flex;
   margin-bottom: ${({ theme }) => theme.spacing(1)};
   justify-content: space-between;
+  align-items: center;
 `
 
 function SettingsButton() {
   const { open } = useSideMenu()
 
-  return <IconButton aria-label='Open settings' onClick={open} icon={Settings} />
+  return <IconButton $size='large' aria-label='Open settings' onClick={open} icon={Settings} />
 }
 
 export function Header() {

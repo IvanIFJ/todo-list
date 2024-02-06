@@ -44,6 +44,10 @@ const StyledButton = styled.button<ButtonProps>`
         width: ${theme.spacing(4)};
       `,
     medium: `
+        height: ${theme.spacing(4)};
+        width: ${theme.spacing(4)};
+      `,
+    large: `
         height: ${theme.spacing(6)};
         width: ${theme.spacing(6)};
       `,
@@ -54,7 +58,7 @@ const StyledButton = styled.button<ButtonProps>`
 type IconButtonProps = {
   icon: LucideIcon
   'aria-label': string
-  $size?: 'small' | 'medium'
+  $size?: 'small' | 'medium' | 'large'
   $inverse?: boolean
 } & React.HTMLAttributes<HTMLButtonElement>
 
