@@ -1,10 +1,10 @@
-import { render, getByText, getByPlaceholderText, fireEvent } from '@testing-library/react'
+import { render, getByText, getByPlaceholderText, fireEvent, waitFor } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 import { App } from '../../App'
 import { act } from 'react-dom/test-utils'
 
 describe('App', () => {
-  it('Welcome', () => {
+  it('Welcome', async () => {
     const { container } = render(<App />)
     const inputPlaceholder = 'Enter your name here'
     const userInput = getByPlaceholderText<HTMLInputElement>(container, inputPlaceholder)
@@ -16,7 +16,9 @@ describe('App', () => {
     expect(getByText(container, welcomeMessage)).toBeTruthy()  
 
     // check focused element
-    expect(document.activeElement?.getAttribute('placeholder')).toBe(inputPlaceholder)
+    await waitFor( () => 
+      expect(document.activeElement?.getAttribute('placeholder')).toBe(inputPlaceholder),
+    )
     
     // check validation
     expect(userInput.getAttribute('value')).toBe('')
