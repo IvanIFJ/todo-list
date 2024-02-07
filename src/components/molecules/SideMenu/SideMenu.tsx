@@ -1,4 +1,4 @@
-import { X } from 'lucide-react'
+import { CheckSquare2, X } from 'lucide-react'
 import { forwardRef, useRef } from 'react'
 import styled from 'styled-components'
 import { useSideMenu } from '.'
@@ -6,6 +6,7 @@ import { useOnKeyDown } from '../../../hooks/useOnKeyDown'
 import { useTaskListActions } from '../../../state'
 import { stores } from '../../../state/createStore'
 import { baseTheme, darkTheme, monospaceTheme, oliveTheme, useChangeTheme } from '../../../styles'
+import { Icon } from '../../atoms/Icon'
 import { IconButton } from '../../atoms/IconButton'
 import { Typography } from '../../atoms/Typography'
 
@@ -41,9 +42,6 @@ const Container = styled.div<{ $opened: boolean }>`
     right: ${$opened ? '0' : `-${theme.spacing(32)}`};
     `}
     ${({ theme }) => `
-      a {
-        color: ${theme.color.text.inverse};
-      }
       button {
         margin-bottom: ${theme.spacing(1)};
       }
@@ -74,10 +72,39 @@ forwardRef(function CloseSiteMenuButton(_, ref: React.Ref<HTMLButtonElement>)  {
   return <IconButton ref={ref} aria-label='Close' onClick={close} icon={X} $size="small" $inverse />
 })
 
+const ThemeOption = styled(Typography)`
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(1)};
+`
+
+function ThemeSelector() {
+  const { changeTheme, current } = useChangeTheme()
+
+  return (<>
+    {THEMES.map(({ name }) => {
+      const active = current === name
+
+      return (
+        <ThemeOption
+          as={active ? 'p' : 'a'}
+          href="#!"
+          $color={active ? 'accent' : 'inverse'}
+          key={name}
+          onClick={() => changeTheme(name)}
+          style={{ textTransform: 'capitalize' }}
+        >
+          {active && <Icon icon={CheckSquare2} size='small' color='accent' />}
+          {name} theme 
+        </ThemeOption> 
+      )})}
+  </>)
+}
+
 export function SideMenu() {
   const { opened, close } = useSideMenu()
   const { clearTasks } = useTaskListActions()
-  const { changeTheme, current } = useChangeTheme()
   const autoFocusRef = useRef<HTMLButtonElement>(null)
 
   const handleClearData = () => {
@@ -93,24 +120,11 @@ export function SideMenu() {
           <CloseSiteMenuButton ref={autoFocusRef} />
 
           <Typography $color="subtle" $variant='caption2'>Manage data:</Typography>
-          <Typography as="a" href="#!" $variant='body' onClick={clearTasks}>Reset tasks</Typography>
-          <Typography as="a" href="#!" $variant='body' onClick={handleClearData}>Clear all data</Typography>
+          <Typography $color="inverse" as="a" href="#!" $variant='body' onClick={clearTasks}>Reset tasks</Typography>
+          <Typography $color="inverse" as="a" href="#!" $variant='body' onClick={handleClearData}>Clear all data</Typography>
           <br />
           <Typography $color='subtle' $variant='caption2'>Change the theme:</Typography>
-          {THEMES.map(({ name }) => (
-            current !== name ?
-              <Typography
-                as="a"
-                href="#!"
-                $variant='body'
-                key={name}
-                onClick={() => changeTheme(name)}
-                style={{ textTransform: 'capitalize' }}
-              >
-                {name} theme
-              </Typography> :
-              null
-          ))}
+          <ThemeSelector />
         </>}
       </nav>
     </Container>
