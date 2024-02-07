@@ -1,4 +1,4 @@
-import { fireEvent, getAllByRole, getByLabelText, getByPlaceholderText, getByRole, getByText, render } from '@testing-library/react'
+import { fireEvent, getAllByRole, getByLabelText, getByPlaceholderText, getByRole, getByText, render, waitFor } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import { describe, expect, it } from 'vitest'
 import { AppProviders } from '../App'
@@ -35,7 +35,7 @@ describe('App', () => {
   }
 
 
-  it('Home', () => {
+  it('Home', async () => {
     const { container } = render(<Home />, { wrapper: AppProviders })
     const createTaskButton = getByLabelText(container, /Create new task/)
 
@@ -44,6 +44,16 @@ describe('App', () => {
     expect(getByText(container, /Start by adding your first task/)).toBeTruthy()
     expect(getByText(container, /Create first task/)).toBeTruthy()
     expect(createTaskButton).toBeTruthy()
+
+    // check task form controls and focus
+    act(() => fireEvent.click(createTaskButton))
+    await waitFor(() => {
+      const inputPlaceholder = 'Type your task here'
+      const closeButton = getByLabelText(container, /Close/)
+
+      expect(document.activeElement?.getAttribute('placeholder')).toBe(inputPlaceholder)
+      act(() => fireEvent.click(closeButton))
+    })
     
     // create tasks and check on list
     const list = ['Buy milk', 'Buy eggs', 'Buy bread', 'Buy butter', 'Buy cheese']
