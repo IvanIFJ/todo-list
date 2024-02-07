@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { useAutoFocus } from '../../hooks/useautoFocus'
+import { useAutoFocus } from '../../hooks/useAutoFocus'
 import { useScreen, useUser } from '../../state'
 import { Button } from '../atoms/Button'
 import { Input } from '../atoms/Input'
