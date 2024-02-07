@@ -336,7 +336,7 @@ module.exports = {
     'prefer-spread': 'error',
     // Enforces consistent spacing after name in function definitions.
     // https://eslint.org/docs/latest/rules/space-after-function-name
-    'space-before-function-paren': ['error', 'never'],
+    'space-before-function-paren': ['error', {'anonymous': 'always', 'named': 'never', 'asyncArrow': 'always'}],
     // Enforce consistent spacing inside array brackets
     // https://eslint.org/docs/latest/rules/array-bracket-spacing#rule-details
     'array-bracket-spacing': ['error', 'never'],
