@@ -1,11 +1,12 @@
 import { PlusCircle, Save } from 'lucide-react'
+import { useState } from 'react'
+import styled from 'styled-components'
+import { useOnKeyDown } from '../../hooks/useOnKeyDown'
+import { useAutoFocus } from '../../hooks/useautoFocus'
+import { useTaskListActions } from '../../state'
 import { Button } from '../atoms/Button'
 import { Input } from '../atoms/Input'
-import { useEffect, useRef, useState } from 'react'
-import styled from 'styled-components'
 import { useModal } from '../molecules/Modal'
-import { useOnKeyDown } from '../../hooks/useOnKeyDown'
-import { useTaskListActions } from '../../state'
 
 const Form = styled.form`
   display: flex;
@@ -17,13 +18,10 @@ export function TaskForm() {
   const { payload, close } = useModal()
   const [name, setName] = useState(payload?.name || '')
   const { createTask, editTask } = useTaskListActions()
-  const ref = useRef<HTMLInputElement>(null)
   const label = payload ? 'Save' : 'Create task'
   const Icon = payload ? Save : PlusCircle
+  const autoFocusRef = useAutoFocus<HTMLInputElement>()
 
-  useEffect(() => {
-    ref.current?.focus()
-  }, [])
   useOnKeyDown((event: KeyboardEvent) => { event.key === 'Escape' && close() })
 
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
@@ -39,7 +37,7 @@ export function TaskForm() {
     <Form onSubmit={handeSubmit}>
       <Input
         type='text'
-        ref={ref}
+        ref={autoFocusRef}
         placeholder="Type your task here"
         value={name}
         onChange={handleChange}

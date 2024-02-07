@@ -1,8 +1,8 @@
 import { CheckSquare2, X } from 'lucide-react'
-import { forwardRef, useRef } from 'react'
 import styled from 'styled-components'
 import { useSideMenu } from '.'
 import { useOnKeyDown } from '../../../hooks/useOnKeyDown'
+import { useAutoFocus } from '../../../hooks/useautoFocus'
 import { useTaskListActions } from '../../../state'
 import { stores } from '../../../state/createStore'
 import { baseTheme, darkTheme, monospaceTheme, oliveTheme, useChangeTheme } from '../../../styles'
@@ -63,14 +63,21 @@ const Backdrop = styled.div<{ $opened: boolean }>`
   `}
 `
 
-const CloseSiteMenuButton = 
-forwardRef(function CloseSiteMenuButton(_, ref: React.Ref<HTMLButtonElement>)  {
+function CloseSiteMenuButton()  {
   const { close } = useSideMenu()
+  const autoFocusRef = useAutoFocus<HTMLButtonElement>({ delay: 500 })
 
   useOnKeyDown((event: KeyboardEvent) => { event.key === 'Escape' && close() })
 
-  return <IconButton ref={ref} aria-label='Close' onClick={close} icon={X} $size="small" $inverse />
-})
+  return <IconButton
+    ref={autoFocusRef}
+    aria-label='Close'
+    onClick={close}
+    icon={X}
+    $size="small"
+    $inverse
+  />
+}
 
 const ThemeOption = styled(Typography)`
   text-transform: capitalize;
@@ -105,7 +112,6 @@ function ThemeSelector() {
 export function SideMenu() {
   const { opened, close } = useSideMenu()
   const { clearTasks } = useTaskListActions()
-  const autoFocusRef = useRef<HTMLButtonElement>(null)
 
   const handleClearData = () => {
     // prevent theme changes
@@ -117,8 +123,7 @@ export function SideMenu() {
       <Backdrop $opened={opened} onClick={close} />
       <nav>
         {opened && <>
-          <CloseSiteMenuButton ref={autoFocusRef} />
-
+          <CloseSiteMenuButton />
           <Typography $color="subtle" $variant='caption2'>Manage data:</Typography>
           <Typography $color="inverse" as="a" href="#!" $variant='body' onClick={clearTasks}>Reset tasks</Typography>
           <Typography $color="inverse" as="a" href="#!" $variant='body' onClick={handleClearData}>Clear all data</Typography>

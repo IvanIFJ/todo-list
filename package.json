@@ -1,6 +1,6 @@
 {
   "name": "todo-list",
-  "version": "1.11.2",
+  "version": "1.11.3",
   "private": true,
   "description": "A simple todo list app built based on Atomic Design principles",
   "homepage": "https://ivanifj.github.io/todo-list/",

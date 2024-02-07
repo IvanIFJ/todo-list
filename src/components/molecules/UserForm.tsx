@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
+import { useAutoFocus } from '../../hooks/useautoFocus'
 import { useScreen, useUser } from '../../state'
 import { Button } from '../atoms/Button'
 import { Input } from '../atoms/Input'
@@ -14,11 +15,7 @@ export const UserForm = () => {
   const [name, setName] = useState('')
   const { setUser } = useUser()
   const { navigate } = useScreen()
-  const ref = useRef<HTMLInputElement>(null)
-
-  useEffect(() => {
-    ref.current?.focus()
-  }, [])
+  const autoFocusRef = useAutoFocus<HTMLInputElement>()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -33,7 +30,7 @@ export const UserForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Input
-        ref={ref}
+        ref={autoFocusRef}
         value={name}
         onChange={handleChange}
         placeholder='Enter your name here'
